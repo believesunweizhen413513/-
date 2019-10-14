@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表页</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../font_1436313_99rfors6bsd/iconfont.css">
+    <link rel="stylesheet" href="../font_1436313_g1sxqijx9ej/iconfont.css">
+    <link rel="stylesheet" href="../sass/goodlist.css">
+    <style>
+        ul,
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #pages {
+            text-align: right;
+            z-index: 999;
+            cursor: pointer;
+            position: relative;
+            /* right: 196px; */
+        }
+
+        #pages a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            background: #C2C2C2;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            line-height: 40px;
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        #pages .active {
+            background: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="top">
+            <div class="content">
+                <span class="top-link">
+                    您好，欢迎来到 <em class="s-name">中酒网！</em>
+                    <a href="/">去首页</a>
+                </span>
+                <ul class="login-regin">
+                    <li class="L-line"> <a href="login.html">请登录</a></li>
+                    <li> <a href="reg.html">免费注册</a></li>
+                </ul>
+                <ul class="quick_list">
+                    <li class="myzhongjiu">
+                        <a href="">我的中酒网<b></b></a>
+                        <div class="myzhongjiu-menu">
+                            <ol>
+                                <li><a href="">已买到的商品</a></li>
+                                <li><a href="">我关注的商品</a></li>
+                                <li><a href="">我关注的店铺</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                    <li><a target="gouwu_car" href="">购物车<em><span id="shopping-amount">0</span></em>件</a></li>
+                    <li class="wetchat_menu">
+                        <a href="">微信端</a>
+                        <div class="dropdown-menu">
+                            <img src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/Site/qrCode.png" width="90"
+                                height="90">
+                        </div>
+                    </li>
+                    <li class="APP_menu">
+                        <a href="">APP</a>
+                        <div class="dropdown-menu">
+                            <img width="90" height="90" src="http://img6.zhongjiu.cn/ResourceB2B2C/App/mob.jpg">
+                        </div>
+
+                    </li>
+                    <li>
+                        <a href="">卖家中心<b></b></a>
+                    </li>
+                    <li>
+                        <a href="">订购热线：400-798-9999</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="header">
+            <div class="content">
+                <div class="header_menu">
+                    <div class="logo">
+                        <a href="">
+                            <img src="../img/logo.png" alt="">
+                        </a>
+
+                    </div>
+                    <div class="gtf">
+                        <a href="http://pro.zhongjiu.cn/20141209/shouji/shouji.html" target="_blank">
+                            <img src="../img/gif.gif">
+                        </a>
+                    </div>
+                    <div class="header_search">
+                        <div class="search_form">
+                            <ul>
+                                <li style="text-align: center;">商品</li>
+                            </ul>
+                            <label class='label222'>店铺</label>
+                            <div class="search_write">
+                                <input type="search" class="text_search" placeholder="天佑德" autocomplete='off'>
+                            </div>
+                            <input type="button" id="searchBtn" class="button" value="搜索">
+
+                            <div class="hot-search">
+                                <a href="" class="active">西凤</a>
+                                <a href="">青稞酒</a>
+                                <a href="">洋河</a>
+                                <a href="">习酒</a>
+                                <a href="">小糊涂仙</a>
+                                <a href="">酒鬼酒</a>
+                                <a href="">张裕</a>
+                                <a href="">拉菲</a>
+                                <a href="">董酒</a>
+                                <a href="">华夏长城</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hearder_zc">
+                        <a href="">
+                            <img src="../img/zc.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="nar_bar">
+            <div class="content">
+                <div class="nar_count">
+                    <div class="goods_Categ">
+                        <i class="iconfont  icon-fenlei"></i>
+                        <a href="">全部商品分类</a><b></b>
+                    </div>
+                    <!-- 二级导航 -->
+                    <div class="Categ_all " style='display:none'>
+                        <div class="Categ_name">
+                            <div class="item">
+                                <span>
+                                    <h3>
+                                        <i class="iconfont icon-baijiu_"></i>
+                                        <a href="">白酒</a>
+                                    </h3>
+                                    <p>
+                                        <a href="" target="_blank">茅台</a>
+                                        <a href="" target="_blank">五粮液</a>
+                                        <a href="" target="_blank" class="active">天佑德</a>
+                                    </p>
+                                </span>
+                                <div class="categ_detl">
+                                    <div class="subitem">
+                                        <dl class="first" style="z-index:99;">
+                                            <dt>品牌</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">泸州老窖</a></li>
+                                                    <li><a title="" href="" target="_blank">洋河</a></li>
+                                                    <li><a title="" href="" target="_blank">剑南春</a></li>
+                                                    <li><a title="" href="" target="_blank">牛栏山</a></li>
+                                                    <li><a title="" href="" target="_blank">红星</a></li>
+                                                    <li class="lastChild"><a title="" href="" target="_blank">西凤</a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">国窖1573</a></li>
+                                                    <li><a title="" href="" target="_blank">小糊涂仙</a></li>
+                                                    <li><a title="" href="" target="_blank">郎酒</a></li>
+                                                    <li><a title="" href="" target="_blank">习酒</a></li>
+                                                    <li><a title="" href="" target="_blank">鸭溪窖</a></li>
+                                                    <li class="lastChild"><a title="" href="" target="_blank">汾酒</a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">董酒</a></li>
+                                                    <li><a title="" href="" target="_blank">酒鬼酒</a></li>
+                                                    <li><a title="" href="" target="_blank">一道泓</a></li>
+                                                    <li><a title="" href="" target="_blank">五粮醇</a></li>
+                                                    <li><a title="" href="" target="_blank">衡水老白干</a></li>
+
+                                                    <li><a title="" href="" target="_blank">更多</a></li>
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>香型</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">酱香型</a></li>
+                                                    <li><a title="" href="" target="_blank">浓香型</a></li>
+                                                    <li><a title="" href="" target="_blank">绵柔型</a></li>
+                                                    <li><a title="" href="" target="_blank">凤香型</a></li>
+                                                    <li><a title="" href="" target="_blank">董香型</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>产地</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">贵州</a></li>
+                                                    <li><a title="" href="" target="_blank">江西</a></li>
+                                                    <li><a title="" href="" target="_blank">四川</a></li>
+                                                    <li><a title="" href="" target="_blank">江苏</a></li>
+                                                    <li><a title="" href="" target="_blank">山西</a></li>
+                                                    <li class="lastChild"><a title="" href="" target="_blank">内蒙</a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">青海</a></li>
+
+                                                </ul>
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                    <div class="cate-right">
+                                        <h5>推荐品牌</h5>
+                                        <ul>
+                                            <li><a href="" title="天佑德青稞酒"><img
+                                                        src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201703091338113466590.jpg"
+                                                        data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201703091338113466590.jpg"
+                                                        class="lazyload" alt="天佑德青稞酒"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <span>
+                                    <h3>
+                                        <i class="iconfont icon-putaojiu"></i>
+                                        <a href="">葡萄酒</a>
+                                    </h3>
+                                    <p>
+                                        <a href="" target="_blank">拉菲</a>
+                                        <a href="" target="_blank">张裕</a>
+                                        <a href="" target="_blank" class="active">马克斯威</a>
+                                    </p>
+                                </span>
+                                <div class="categ_detl">
+                                    <div class="subitem">
+                                        <dl class="first" style="z-index:99;">
+                                            <dt>品牌</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">黄尾袋鼠</a></li>
+                                                    <li><a title="" href="" target="_blank">佩西</a></li>
+                                                    <li><a title="" href="" target="_blank">乐船</a></li>
+                                                    <li><a title="" href="" target="_blank">小龙船</a></li>
+                                                    <li><a title="" href="" target="_blank">特拉托</a></li>
+                                                    <li class="lastChild"><a title="" href="" target="_blank">圣迪斯</a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">奔富</a></li>
+                                                    <li><a title="" href="" target="_blank">康迪</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>类型</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">干红葡萄酒</a></li>
+                                                    <li><a title="" href="" target="_blank">干白葡萄酒</a></li>
+                                                    <li><a title="" href="" target="_blank">气泡/香槟</a></li>
+                                                    <li><a title="" href="" target="_blank">冰酒</a></li>
+                                                    <li><a title="" href="" target="_blank">果酒</a></li>
+                                                    <li class="lastChild"><a title="" href="" target="_blank">甜桃红</a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">甜白</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>产区</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">法国</a></li>
+                                                    <li><a title="" href="" target="_blank">西班牙</a></li>
+                                                    <li><a title="" href="" target="_blank">智利</a></li>
+                                                    <li><a title="" href="" target="_blank">阿根廷</a></li>
+                                                    <li><a title="" href="" target="_blank">澳大利亚</a></li>
+                                                    <li class="lastChild"><a title="" href="" target="_blank">中国</a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title="" href="" target="_blank">美国</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                    <div class="cate-right">
+                                        <h5>推荐品牌</h5>
+                                        <ul>
+                                            <li><a href="http://www.zhongjiu.cn/list/101-626-0-1-2-2.htm"
+                                                    title="张裕干红葡萄酒"><img
+                                                        src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201703091354318083820.jpg"
+                                                        class="lazyload" alt="张裕干红葡萄酒"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <span>
+                                    <h3>
+                                        <i class="iconfont icon-yangjiu-"
+                                            style="background:url( http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201609280919080930420.png ) no-repeat;"></i>
+                                        <a href="http://www.zhongjiu.cn/list/502-0-0-1-1-1.htm">洋酒</a>
+                                    </h3>
+                                    <p>
+                                        <a href="http://www.zhongjiu.cn/list/502-534-0-1-1-1.htm" target="_blank"
+                                            class="active">马爹利</a>
+                                        <a href="http://www.zhongjiu.cn/list/502-332-0-1-1-1.htm"
+                                            target="_blank">人头马</a>
+                                        <a href="http://www.zhongjiu.cn/list/502-330-0-1-1-1.htm"
+                                            target="_blank">芝华士</a>
+                                    </p>
+                                </span>
+                                <div class="categ_detl">
+                                    <div class="subitem">
+                                        <dl class="first" style="z-index:99;">
+                                            <dt>品牌</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-836-0-1-1-1.htm"
+                                                            target="_blank">皇家贝斯</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-794-0-1-1-1.htm"
+                                                            target="_blank">深蓝</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-795-0-1-1-1.htm"
+                                                            target="_blank">百利甜</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-329-0-1-1-1.htm"
+                                                            target="_blank">绝对伏特加</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-632-0-1-1-1.htm"
+                                                            target="_blank">杰克丹尼</a></li>
+                                                    <li class="lastChild"><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-327-0-1-1-1.htm"
+                                                            target="_blank">百龄坛</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-642-0-1-1-1.htm"
+                                                            target="_blank">百加得</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-637-0-1-1-1.htm"
+                                                            target="_blank">尊尼获加</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-331-0-1-1-1.htm"
+                                                            target="_blank">轩尼诗</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-631-0-1-1-1.htm"
+                                                            target="_blank">皇家礼炮</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-940-0-1-1-1.htm"
+                                                            target="_blank">摩根船长</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>适用</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-0-1083-1-1-1.htm"
+                                                            target="_blank">聚会用酒</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-0-1080-1-1-1.htm"
+                                                            target="_blank">商务用酒</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>产地</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-0-1062-1-1-1.htm"
+                                                            target="_blank">中国</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-0-1053-1-1-1.htm"
+                                                            target="_blank">法国</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-0-1052-1-1-1.htm"
+                                                            target="_blank">英国</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-0-1057-1-1-1.htm"
+                                                            target="_blank">美国</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                    <div class="cate-right">
+                                        <h5>推荐品牌</h5>
+                                        <ul>
+                                            <li><a href="http://www.zhongjiu.cn/list/502-332-0-1-1-1.htm"
+                                                    title="人头马"><img style=""
+                                                        src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201703091406164460190.jpg"
+                                                        data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201703091406164460190.jpg"
+                                                        class="lazyload" alt="人头马"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <span>
+                                    <h3>
+                                        <i class="icon-huangjiu"
+                                            style="background:url( http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201609280919312902820.png ) no-repeat;"></i>
+                                        <a href="http://www.zhongjiu.cn/list/565-0-0-1-1-1.htm">黄酒</a>
+                                    </h3>
+                                    <p>
+                                        <a href="http://www.zhongjiu.cn/list/565-949-0-1-1-1.htm"
+                                            target="_blank">尧喝货</a>
+                                        <a href="http://www.zhongjiu.cn/list/565-768-0-1-1-1.htm" target="_blank"
+                                            class="active">唐宋</a>
+                                        <a href="http://www.zhongjiu.cn/list/565-705-0-1-1-1.htm" target="_blank">塔牌</a>
+                                    </p>
+                                </span>
+                                <div class="categ_detl">
+                                    <div class="subitem">
+                                        <dl class="first" style="z-index:99;">
+                                            <dt>品牌</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/565-334-0-1-1-1.htm"
+                                                            target="_blank">女儿红</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/565-335-0-1-1-1.htm"
+                                                            target="_blank">古越龙山</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/565-769-0-1-1-1.htm"
+                                                            target="_blank">石库门</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/565-336-0-1-1-1.htm"
+                                                            target="_blank">劲酒</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/565-764-0-1-1-1.htm"
+                                                            target="_blank">会稽山</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>适用</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/565-0-1083-1-1-1.htm"
+                                                            target="_blank">聚会用酒</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/565-0-1082-1-1-1.htm"
+                                                            target="_blank">礼节拜访</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/565-0-1081-1-1-1.htm"
+                                                            target="_blank">婚庆用酒</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                    <div class="cate-right">
+                                        <h5>推荐品牌</h5>
+                                        <ul>
+                                            <li><a href="http://www.zhongjiu.cn/list/565-768-0-1-1-1.htm"
+                                                    title="唐宋"><img style=""
+                                                        src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201703091713216641350.jpg"
+                                                        data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201703091713216641350.jpg"
+                                                        class="lazyload" alt="唐宋"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <span>
+                                    <h3>
+                                        <i class="iconfont icon-daishouhuolihe"
+                                            style="background:url( http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201609280919479355120.png ) no-repeat;"></i>
+                                        <a href="http://pro.zhongjiu.cn/20170103/lihe.html">礼盒专区</a>
+                                    </h3>
+                                    <p>
+                                        <a href="http://www.zhongjiu.cn/productdetail/81335.htm" target="_blank"
+                                            class="active">五粮液五星级</a>
+                                    </p>
+                                </span>
+                                <div class="categ_detl">
+                                    <div class="subitem">
+                                        <dl class="first" style="z-index:99;">
+                                            <dt>品牌</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/search.htm?keywords=礼盒"
+                                                            target="_blank">礼盒</a></li>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/2-322-0-1-1-1.htm"
+                                                            target="_blank">五粮液</a></li>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/2-342-0-1-1-1.htm"
+                                                            target="_blank">汾酒</a></li>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/2-323-0-1-1-1.htm"
+                                                            target="_blank">茅台</a></li>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/2-324-0-1-1-1.htm"
+                                                            target="_blank">剑南春</a></li>
+                                                    <li class="lastChild"><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-626-0-1-1-1.htm"
+                                                            target="_blank">张裕</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-697-0-1-1-1.htm"
+                                                            target="_blank">拉菲</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>类型</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/2-0-1028-1-1-1.htm"
+                                                            target="_blank">酱香型</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/2-0-1022-1-1-1.htm"
+                                                            target="_blank">浓香型</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-0-1043-1-1-1.htm"
+                                                            target="_blank">干红葡萄酒</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-0-1044-1-1-1.htm"
+                                                            target="_blank">干白葡萄酒</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>产地</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/2-0-1006-1-1-1.htm"
+                                                            target="_blank">四川</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/2-0-1016-1-1-1.htm"
+                                                            target="_blank">贵州</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-0-1036-1-1-1.htm"
+                                                            target="_blank">法国</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-0-1084-1-1-1.htm"
+                                                            target="_blank">美国</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                    <div class="cate-right">
+                                        <h5>推荐品牌</h5>
+                                        <ul>
+                                            <li><a href="http://www.zhongjiu.cn/productdetail/81335.htm"
+                                                    title="五星级"><img style=""
+                                                        src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201708251457075503740.jpg"
+                                                        data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201708251457075503740.jpg"
+                                                        class="lazyload" alt="五星级"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <span>
+                                    <h3>
+                                        <i class="iconfont icon-hunqingyonghua-"
+                                            style="background:url( http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201609280920068115450.png ) no-repeat;"></i>
+                                        <a href="http://pro.zhongjiu.cn/20160919/huny.html">婚庆专区</a>
+                                    </h3>
+                                    <p>
+                                        <a href="http://www.zhongjiu.cn/list/2-323-0-1-1-1.htm" target="_blank"
+                                            class="active">茅台</a>
+                                        <a href="http://www.zhongjiu.cn/list/101-697-0-1-1-1.htm" target="_blank">拉菲</a>
+                                        <a href="http://www.zhongjiu.cn/list/2-322-0-1-1-1.htm" target="_blank">五粮液</a>
+                                        <a href="http://www.zhongjiu.cn/list/101-626-0-1-1-1.htm" target="_blank">张裕</a>
+                                    </p>
+                                </span>
+                                <div class="categ_detl">
+                                    <div class="subitem">
+                                        <dl class="first" style="z-index:99;">
+                                            <dt>品牌</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/2-324-0-1-1-1.htm"
+                                                            target="_blank">剑南春</a></li>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/2-326-0-1-1-1.htm"
+                                                            target="_blank">泸州老窖</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-798-0-1-1-1.htm"
+                                                            target="_blank">伊莎特</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-543-0-1-1-1.htm"
+                                                            target="_blank">佩西</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-964-0-1-1-1.htm"
+                                                            target="_blank">卡萨玛利亚</a></li>
+                                                    <li class="lastChild"><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-883-0-1-1-1.htm"
+                                                            target="_blank">龙船康帝</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/2-503-0-1-1-1.htm"
+                                                            target="_blank">郎酒</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>种类</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/2-0-0-1-1-1.htm"
+                                                            target="_blank">白酒</a></li>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/101-0-0-1-1-1.htm"
+                                                            target="_blank">红酒</a></li>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/502-0-0-1-1-1.htm"
+                                                            target="_blank">洋酒</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-0-1045-1-1-1.htm"
+                                                            target="_blank">起泡酒</a></li>
+                                                    <li><a title="" href="http://www.zhongjiu.cn/list/565-0-0-1-1-1.htm"
+                                                            target="_blank">黄酒</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+                                            <dt>产地</dt>
+                                            <dd class="clearfix">
+                                                <ul>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/2-0-1016-1-1-1.htm"
+                                                            target="_blank">贵州</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/2-0-1006-1-1-1.htm"
+                                                            target="_blank">四川</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-0-1041-1-1-1.htm"
+                                                            target="_blank">澳大利亚</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/101-0-1036-1-1-1.htm"
+                                                            target="_blank">法国</a></li>
+                                                    <li><a title=""
+                                                            href="http://www.zhongjiu.cn/list/502-0-1052-1-1-1.htm"
+                                                            target="_blank">英国</a></li>
+
+
+
+                                                </ul>
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                    <div class="cate-right">
+                                        <h5>推荐品牌</h5>
+                                        <ul>
+                                            <li><a href="http://www.zhongjiu.cn/productdetail/3878.htm" title="白西凤"><img
+                                                        style=""
+                                                        src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201708251457518162350.jpg"
+                                                        data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Plat/ImageAd/201708251457518162350.jpg"
+                                                        class="lazyload" alt="白西凤"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nar_ul">
+                    <li class="_banner cur" id="homePage" index=""><a href="/">首页</a></li>
+                    <li class="_banner" index=""><a href="">白酒专区</a></li>
+                    <li class="_banner" index=""><a href="">天佑德青稞酒</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="lafei-banner">
+            <!-- <img src="../img/lafei-banner.jpg" alt=""> -->
+            <div class="content">
+                <div class="banner-img">
+                    <img src="../img/logo_697.jpg" alt="">
+                </div>
+                <div class="banner-content">
+                    <p>拉菲是享誉世界的法国波尔多葡萄酒之一。它本是世界顶级酒庄拉菲古堡的简称，人们习惯把拉菲古堡酿制的拉菲古堡干红葡萄酒(也称大拉菲、拉菲酒庄干红葡萄酒、拉菲正牌)以及拉菲珍宝干红葡萄酒也简称为拉菲。同时，拉菲还代表了酒庄所有者拉菲罗斯柴尔德男爵集团DBR。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="content">
+                <div class="crumb">
+                    <div class="crumb-content left"><a href="/"
+                            target="_self"><strong>首页&nbsp;&nbsp;&gt;&nbsp;&nbsp;</strong></a><em
+                            id="searchKeywords"></em></div>
+                    <ul class="select-value left">
+                        <li>
+                            <a href="">全部</a><strong>&nbsp;&gt;&nbsp;</strong>
+                        </li>
+                        <li>
+                            <a href="" title="葡萄酒"><strong>葡萄酒</strong></a> <strong>&nbsp;&gt;&nbsp;</strong>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" title="拉菲"><strong>拉菲</strong><b>x</b></a>
+                        </li>
+                    </ul>
+                    <span class="total-p">共<strong id="res_count">1</strong>个商品</span>
+                </div>
+                <div class="s-content-b">
+                    <div class="s-left">
+                        <div class="m" id="refilter">
+                            <div class="mt">
+                                <h2>所有类目</h2>
+                            </div>
+                            <div class="mc">
+                                <div class="item fore hover">
+                                    <h3>
+                                        <b></b>
+                                        <a href="" class="">酒类</a>
+                                    </h3>
+                                    <ul>
+
+                                        <li class="curr">
+                                            <a href="">葡萄酒</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="">拉菲</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="see-more">
+                            <h2>购买了此类商品的用户还浏览</h2>
+                            <div class="more-produce">
+                                <ul>
+                                    <li>
+                                        <a href="">
+                                            <img src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/3568/1_150.png"
+                                                alt="" title="拉菲传奇波尔多 750ml（6瓶装）">
+                                            <p class="name-line">拉菲传奇波尔多 750ml（6瓶装）</p>
+                                            <p class="my-price-line-zi">
+                                                ￥<span jdprice="439" jshop="price">599.00</span>
+                                                <span class="comment">评论数:<em>1665</em></span>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blank_info  brand-consulting m">
+                            <h2 id="brandinfos" class="brand-title">品牌资讯</h2>
+                            <ul id="titltshow">
+                                <li style="width:25%;float:left;text-decoration:underline;"><a
+                                        href="/brandarticleDetail/268.htm " target="_blank">总统担忧拉菲干不过丁戈树</a></li>
+                                <li style="width:25%;float:left;text-decoration:underline;"><a
+                                        href="/brandarticleDetail/59.htm " target="_blank">宁夏酿出中国的“拉菲”</a></li>
+                            </ul>
+                            <a class="brand-more" href="">更多 &gt;&gt;</a>
+                        </div>
+                    </div>
+                    <div class="s-right">
+                        <div class="RC-top">
+                            <div class="m" id="select">
+                                <div class="mc">
+                                    <div class="prop-attrs">
+                                        <div class="attr">
+                                            <div class="a-key">产地：</div>
+                                            <div class="a-values">
+                                                <div class="v-fold">
+                                                    <ul class="f-list">
+                                                        <li>
+
+                                                            <a href="">法国</a>
+                                                        </li>
+                                                        <li>
+
+                                                            <a href="">智利</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="v-option" style="display: none;">
+                                                    <span class="o-more"><b></b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="attr">
+                                            <div class="a-key">种类：</div>
+                                            <div class="a-values">
+                                                <div class="v-fold">
+                                                    <ul class="f-list">
+                                                        <li>
+
+                                                            <a href="">干红葡萄酒</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="v-option" style="display: none;">
+                                                    <span class="o-more"><b></b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="attr">
+                                            <div class="a-key">适用：</div>
+                                            <div class="a-values">
+                                                <div class="v-fold">
+                                                    <ul class="f-list">
+                                                        <li>
+
+                                                            <a href="/list/101-697-1083-1-1-1.htm?shopId=0">聚会用酒</a>
+                                                        </li>
+                                                        <li>
+
+                                                            <a href="/list/101-697-1082-1-1-1.htm?shopId=0">礼节拜访</a>
+                                                        </li>
+                                                        <li>
+
+                                                            <a href="/list/101-697-1081-1-1-1.htm?shopId=0">婚庆用酒</a>
+                                                        </li>
+                                                        <li>
+
+                                                            <a href="/list/101-697-1080-1-1-1.htm?shopId=0">商务用酒</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="v-option" style="display: none;">
+                                                    <span class="o-more"><b></b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div id="filter">
+                            <div class="fore1">
+                                <dl class="order">
+                                    <dd class="curr"><a href="" onclick="">默认</a><b></b></dd>
+                                    <dd class=" order-num">
+                                        <a href="">成交量</a><b id="btn1"></b>
+                                    </dd>
+                                    <dd class="pro-price">
+                                        <a href="###">价格</a><b id="btn"></b>
+                                    </dd>
+                                    <dd class=" pro-comment">
+                                        <a href="">评论数</a><b></b>
+                                    </dd>
+                                    <dd class="">
+                                        <a href="">上架时间</a><b></b>
+                                    </dd>
+                                    <dd>
+                                        <a href="" class="jdzy "><i></i>中酒自营</a>
+                                    </dd>
+                                </dl>
+
+                                <div class="pagin pagin-m" id="top_pagi">
+                                    <span class="text">
+                                        <a href="###" class="before">&lt;</a>
+                                        <i id="nownum">1</i><b id="cout">/1</b>
+                                        <a href="" class="after">&gt;</a>
+                                    </span>
+                                </div>
+                                <span class="clr"></span>
+                            </div>
+
+                        </div>
+                        <div class="preaser-list" id="plist">
+                            <ul class="list-h cl">
+                                <!-- <li class="clearfix">
+                                    <div class="lh-wrap">
+                                        <div class="p-img">
+                                            <a target="_blank" href="http://www.zhongjiu.cn/productdetail/2101.htm">
+                                                <img class="lazyload"
+                                                    src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/2_220.png"
+                                                    data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/1_220.png"
+                                                    onerror="javascript:this.src = '/Images/onerror.jpg';"
+                                                    alt="拉菲珍藏波尔多干红红葡萄酒 750ml" title="拉菲珍藏波尔多干红红葡萄酒 750ml">
+                                            </a>
+                                            <div shop_id="0"></div>
+                                        </div>
+                                        <div class="p-price">
+                                            <strong>￥129.00</strong>
+
+                                            <label style="float:right" id="lblOrderCount_2101">成交 <b> 1693 </b>笔</label>
+                                        </div>
+                                        <div class="p-name">
+                                            <a target="_blank" href="http://www.zhongjiu.cn/productdetail/2101.htm">
+                                                <font>拉菲</font>珍藏波尔多干红红葡萄酒 750ml
+                                            </a>
+                                          
+                                        </div>
+                                        <div class="p-shop-N">
+                                            <label class="SN" id="lblShopName_2101"><a
+                                                    href="/shop/home/1">中酒自营</a></label>
+
+                                            <label class="shop-cart" id="addCart_2101"><i
+                                                    class="iconfont icon-gouwuchekong"></i></label>
+                                        </div>
+                                    </div>
+                                    <div class="scale-img"> <a href="javascript:;">
+                                            <img class="lazyload"
+                                                src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/2_50.png"
+                                                data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/2_50.png"
+                                                data-url-max="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/2_220.png"
+                                                onerror="javascript:this.src = '/Images/onerror.jpg';"
+                                                alt="拉菲珍藏波尔多干红红葡萄酒 750ml" title="拉菲珍藏波尔多干红红葡萄酒 750ml">
+                                        </a>
+                                        <a href="javascript:;">
+                                            <img class="lazyload"
+                                                src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/3_50.png"
+                                                data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/3_50.png"
+                                                data-url-max="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/3_220.png"
+                                                onerror="javascript:this.src = '/Images/onerror.jpg';"
+                                                alt="拉菲珍藏波尔多干红红葡萄酒 750ml" title="拉菲珍藏波尔多干红红葡萄酒 750ml">
+                                        </a>
+                                        <a href="javascript:;">
+                                            <img class="lazyload"
+                                                src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/4_50.png"
+                                                data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/4_50.png"
+                                                data-url-max="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/4_220.png"
+                                                onerror="javascript:this.src = '/Images/onerror.jpg';"
+                                                alt="拉菲珍藏波尔多干红红葡萄酒 750ml" title="拉菲珍藏波尔多干红红葡萄酒 750ml">
+                                        </a>
+                                        <a href="javascript:;">
+                                            <img class="lazyload"
+                                                src="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/5_50.png"
+                                                data-url="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/5_50.png"
+                                                data-url-max="http://img6.zhongjiu.cn/resourceb2b2c//Storage/Shop/1/Products/2101/5_220.png"
+                                                onerror="javascript:this.src = '/Images/onerror.jpg';"
+                                                alt="拉菲珍藏波尔多干红红葡萄酒 750ml" title="拉菲珍藏波尔多干红红葡萄酒 750ml">
+                                        </a>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="m clearfix" id="bottom_pager">
+                               
+                                    <p id="pages">
+                                        <!-- <a class="active" href="#">1</a>
+                                                    <a href="#">2</a>
+                                                    <a href="#">3</a> -->
+                                    </p>
+                              
+                    
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </div>
+      
+        <div class="bottom-first">
+            <div class="content">
+                <div class="bottom-first-img">
+                    <img src="../img/bo.png" alt="">
+                </div>
+
+            </div>
+        </div>
+      
+        <div class="bottom-two">
+            <div class="content">
+                <dl class="linkothers">
+                    <dd><a href="">
+                            <img class="img2" src="../img/images/zj2.png" alt="">
+                            <img class="img1" src="../img/images/zj.png" alt="">
+                        </a></dd>
+                    <dd>
+                        <a href=""><img class="img2" src="../img/images/ls.png" alt="">
+                            <img class="img1" src="../img/images/ls2.png" alt=""></a></dd>
+                </dl>
+                <dl>
+                    <dt>购物指南</dt>
+                    <dd>
+                        <a title="购物流程" href="" target="_blank">购物流程</a>
+                    </dd>
+                    <dd>
+                        <a title="用户注册协议" href="" target="_blank">用户注册协议</a>
+                    </dd>
+                    <dd>
+                        <a title="会员积分" href="" target="_blank">会员积分</a>
+                    </dd>
+                    <dd>
+                        <a title="关于发票" href="" target="_blank">关于发票</a>
+                    </dd>
+                    <dd>
+                        <a title="关于优惠券" href="" target="_blank">关于优惠券</a>
+                    </dd>
+                    <dd>
+                        <a title="开票说明 " href="/" target="_blank">开票说明 </a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>配送说明</dt>
+                    <dd>
+                        <a title="关于运费" href="" target="_blank">关于运费</a>
+                    </dd>
+                    <dd>
+                        <a title="快递查询" href="" target="_blank">快递查询</a>
+                    </dd>
+                    <dd>
+                        <a title="发货与签收" href="" target="_blank">发货与签收</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd>
+                        <a title="支付宝支付" href="/" target="_blank">支付宝支付</a>
+                    </dd>
+                    <dd>
+                        <a title="微信支付" href="" target="_blank">微信支付</a>
+                    </dd>
+                    <dd>
+                        <a title="账户余额支付" href="" target="_blank">账户余额支付</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>售后服务</dt>
+                    <dd>
+                        <a title="热门常见问题" href="" target="_blank">热门常见问题</a>
+                    </dd>
+                    <dd>
+                        <a title="服务承诺" href="" target="_blank">服务承诺</a>
+                    </dd>
+                    <dd>
+                        <a title="退款说明" href="/" target="_blank">退款说明</a>
+                    </dd>
+                    <dd>
+                        <a title="退换货政策" href="/" target="_blank">退换货政策</a>
+                    </dd>
+                    <dd>
+                        <a title="退换货流程" href="/" target="_blank">退换货流程</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>服务保障</dt>
+                    <dd>
+                        <a title="30分钟快速响应" href="" target="_blank">30分钟快速响应</a>
+                    </dd>
+                    <dd>
+                        <a title="7*12小时贴心服务" href="" target="_blank">7*12小时贴心服务</a>
+                    </dd>
+                </dl>
+                <div class="weixin-ma">
+                    <dl class="wei-xin">
+                        <dt>中酒微信</dt>
+                        <dd><img src="../img/images/wx.jpg" alt=""></dd>
+                        <dd>中酒官方微信</dd>
+                    </dl>
+                </div>
+                <div class="shouji-ma">
+                    <dl class="shouji-xin">
+                        <dt>手机中酒</dt>
+                        <dd><img src="../img/images/mob.jpg" alt=""></dd>
+                        <dd>下载移动客户端</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-sr">
+            <div class="content">
+                <a title="" href="http://www.zhongjiu.cn/Article/Details/25" target="_blank">关于中酒</a>
+                <a title="" href="http://www.zhongjiu.cn/Article/Details/31" target="_blank">媒体报道 </a>
+                <a title="" href="http://www.zhongjiu.cn/Article/Details/26" target="_blank">商务合作</a>
+
+                <a title="" href="http://www.zhongjiu.cn/Article/Details/28 " target="_blank">加入中酒</a>
+                <a title="" href="http://pro.zhongjiu.cn/jiameng/jiameng.html" target="_blank"> 商家加盟</a>
+                <a title="" href="http://www.zhongjiu.cn/Article/Details/30" target="_blank">联系我们</a>
+            </div>
+        </div>
+        <div class="foorter-last">
+            <div class="content">
+                <p>Copyright © 2016 中酒网(www.zhongjiu.cn) 版权所有 京ICP备12022216号-2 | 京公网安备 11010502026701 |
+                    购买前请确认达到法定饮酒年龄！中酒网不销售任何含酒精产品给18岁以下人士！</p>
+                <p style="padding-bottom:10px;">
+                    公司名称：中酒时代酒业（北京）有限公司&nbsp;公司地址：北京市朝阳区高碑店乡半壁店村惠河南街1111号国投尚科大厦2层E202单元办公室&nbsp;联系人：刘铮&nbsp;联系方式：400-798-9999&nbsp;社会信用代码证：911101055938071245
+                </p>
+                <div class="beian">
+                    <a title="" href=""><img src="../img/images/authentication_05.png"></a>
+                    <a title="" href=""><img src="../img/images/authentication_07.png"></a>
+                    <a title="" href=""><img src="../img/images/authentication_09.png"></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="right-side">
+            <div class="right-side-menu">
+                <ul class="menu-top">
+                    <li data-tag="user">
+                        <i class="user" id="right_userCenter"><s></s></i>
+                        <span style="display: none; right: 60px; opacity: 0;">个人中心</span>
+                    </li>
+                    <s></s>
+                    <li data-tag="cart" arrow="" class="side-cart" id="right_cart">
+                        <i class="cart"><s ></s></i>
+                        <p>购物车</p>
+                        <em>0</em>
+                    </li>
+                    <s></s>
+                    <li data-tag="asset" arrow="" id="right_asset">
+                        <i class="asset"><s></s></i>
+                        <span style="display: none; right: 60px; opacity: 0;">资产中心</span>
+                        <div class="side-point">
+                            该店铺可领优惠券<br>
+                            <a>立即领取</a>
+                        </div>
+                    </li>
+                    <li data-tag="at-goods" arrow="" id="right_goods">
+                        <i class="at-goods"><s></s></i>
+                        <span style="display: none; right: 60px; opacity: 0;">关注商品</span>
+                    </li>
+                    <li data-tag="history" arrow="" id="right_history">
+                        <i class="history"><s></s></i>
+                        <span style="display: none; right: 60px; opacity: 0;">浏览历史</span>
+                    </li>
+        
+                </ul>
+            </div>
+        </div>
+</body>
+<script src="../js/jquery-1.10.1.min.js"></script>
+<script src="../js/comm1.js"></script>
+<script src="../js/goodslist.js"></script>
+
+</html>

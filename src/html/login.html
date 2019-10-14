@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../sass/login.css">
+    <style>
+        ul,
+        li {
+            list-style: none;
+        }
+
+        p {
+            list-style: none
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="header">
+            <div class="content">
+                <a href=""><img src="../img/loginLogo.png" alt=""></a>
+                <a>欢迎登录</a>
+            </div>
+        </div>
+        <div class="center">
+            <div class="content">
+                <div class="login">
+                    <div class="left">
+                        <img src="../img/loginBannerImg.png" alt="">
+                    </div>
+                    <div class="right">
+                        <div class="content">
+                            <div class="right-login">
+                                <ul class="tab-inf">
+                                    <li class='active lis1'>扫码登录</li>
+                                    <li class="lis2">账户登录</li>
+                                </ul>
+                                <div class="tab-right-ma" style="display: block">
+                                    <div class="saoma">
+                                        <div class="img">
+                                            <img src="../img/GetQR.gif" alt="">
+                                        </div>
+                                        <span>打开中酒网App</span>
+                                        <span class="fr">扫描二维码</span>
+                                        <span><img src="../img/sao_2.png" alt=""></span>
+                                    </div>
+                                    <div class="registerNow">
+                                        <a href="">
+                                            <img width="16" src="../img/icon-weibo.png" alt="微博">
+                                            <span>微博</span>
+                                        </a>
+                                        <span> | </span>
+                                        <a href="">
+                                            <img width="16" src="../img/icon-weixin.png" alt="微信">
+                                            <span>微信</span>
+                                        </a>
+                                        <span> | </span>
+                                        <a href="Register" target="_blank">立即注册</a>
+                                    </div>
+                                </div>
+                                <div class="imegess" style="display: none">
+                                    <div class="imegess-inf">
+                                        <div class="inputBox">
+                                            <div class="iconBox">
+                                                <img width="16" src="../img/icon-user.png" alt="">
+                                            </div>
+                                            <input id="loginname" type="text" name="loginname" placeholder="请输入用户名"
+                                                tabindex="1" autocomplete="off" sta="2" value="">
+                                        </div>
+                                        <div class="inputBox">
+                                            <div class="iconBox">
+                                                <img width="16" src="../img/icon-lock.png" alt="">
+                                            </div>
+                                            <input id="password" type="password" name="password" placeholder="请输入密码"
+                                                tabindex="2" autocomplete="off" sta="2">
+                                        </div>
+                                        <div id="loginsubmit" class="btn-enter">登录</div>
+                                        <div class="tipsText">
+                                            <p class="toggleLoginBtn" style="cursor:pointer" data-status="1">短信验证码登录</p>
+                                            <a href="">忘记密码</a>
+                                        </div>
+                                        <div class="registerNow">
+                                            <a href="">
+                                                <img width="16" src="../img/icon-weibo.png" alt="微博">
+                                                <span>微博</span>
+                                            </a>
+                                            <span> | </span>
+                                            <a href="">
+                                                <img width="16" src="../img/icon-weixin.png" alt="微信">
+                                                <span>微信</span>
+                                            </a>
+                                            <span> | </span>
+                                            <a href="Register" target="_blank">立即注册</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="foor">
+            <div class="content">
+                <div class="foor-imeges">
+                    <p>Copyright © 2019 <a href=""> 中酒网 版权所有</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="../js/swiper-4.3.5.min.js"></script>
+<script src="../js/comm1.js"></script>
+<script>
+    (function () {
+        let rightlogin = document.getElementsByClassName('right-login')[0];
+
+        let lis1 = rightlogin.getElementsByClassName('lis1')[0];
+
+        let lis2 = rightlogin.getElementsByClassName('lis2')[0];
+
+        let rightma = rightlogin.getElementsByClassName('tab-right-ma')[0];
+
+        let imegess = rightlogin.getElementsByClassName('imegess')[0];
+
+
+        // 点击切换登录方式
+        lis1.onclick = function () {
+            rightma.style.display = 'block';
+            imegess.style.display = 'none';
+            lis1.className = 'active';
+            lis2.className = '';
+        }
+        lis2.onclick = function () {
+            lis1.className = '';
+            lis2.className = 'active';
+            rightma.style.display = 'none';
+            imegess.style.display = 'block';
+        }
+        //    判断登录用户名、密码是否正确
+        let loginsubmit = document.getElementById('loginsubmit');
+        let loginname = document.getElementById('loginname');
+        let pwd = document.getElementById('password');
+
+       
+      
+        loginsubmit.onclick =function(){
+            let name1=loginname.value.trim();
+            ajax({
+                type: 'get',
+                url: '../api/jiekou.php',
+                data: {
+                    name: loginname.value.trim(),
+                    password: pwd.value.trim(),
+                    type: 'reg'
+                },
+                success: str => {
+                    setcookie('username', name1, 7);
+                    window.open('./../index.html');
+                }
+            });
+        }
+    })();
+
+</script>
+
+</html>

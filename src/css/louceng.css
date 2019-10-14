@@ -1,0 +1,7 @@
+*{padding: 0;margin: 0;}  
+.floor{position: fixed;top: 200px;left: 35px;}  
+.floor li{width: 40px;height: 30px;border: 1px solid #ededed;list-style: none;  
+ text-align: center;line-height: 30px;}  
+/* a{text-decoration: none;color: black;display: block;}   */
+.footer{width:600px;height:300px;margin:0 auto;text-align:center;}
+.floor li.active{background: #e3393c;}
