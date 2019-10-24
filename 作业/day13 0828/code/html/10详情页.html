@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>详情页</title>
+
+</head>
+
+<body>
+	<h1>详情页</h1>
+	<div id="goodinf">
+		<!--<img src="img/ip7.jpg"/>
+			<p>iphone7 plugs</p>
+			<p>价格:￥5888</p>-->
+	</div>
+</body>
+<script>
+	/*
+			  需求：
+					* 获取网址的参数，再进行数据渲染
+			  	
+		*/
+	//本地获取地址，进行加工
+	(function () {
+		// 默认第一个是问号，截取第一个之后的数据，第一个下标为0，所以从1开始
+		var gain = decodeURI(location.search).slice(1);
+		console.log(gain);//id=001&name=iphone7 plugs&imgurl=../img/ip7.jpg&price=5899&sale=5888&color=土豪金
+		// 将字符串转成对象，然后进行截取
+		function strtoobj(str) {
+			// 定义一个空对象
+			var val = {};
+			// 创建一个数组，把对象按照&分割
+			var arr1 = gain.split("&");
+			// 遍历数组arr1，以=作为分割
+			for (var i = 0; i < arr1.length; i++) {
+				var arr2 = arr1[i].split("=");
+				val[arr2[0]] = [arr2[1]];//把下标为0的元素作为属性，1 的作为属性值
+			}
+			console.log(val);
+			return val;
+		}
+		// 入口，把数据传进去
+		var good = strtoobj(gain);
+		var html = `<img src="${good.imgurl}""/>
+			<p>${good.name}</p>
+			<p>价格:￥${good.price}</p>`
+			// 渲染数据
+			var goodinf = document.getElementById('goodinf');
+				goodinf.innerHTML = html;
+	})();
+</script>
+
+</html>

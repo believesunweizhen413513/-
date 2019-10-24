@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>音乐播放器：简易版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        #box {
+            width: 500px;
+            height: 540px;
+            border: 1px solid #ededed;
+            margin: 100px auto;
+        }
+
+        .sousuo {
+            width: 100%;
+            height: 50px;
+            /* text-align: center; */
+            margin-top: 20px;
+            z-index: 12;
+        }
+
+        .center {
+            width: 100%;
+            height: 400px;
+            margin-top: 10px;
+            /* background: url(../img/lin44.gif) no-repeat;
+            background-size:100% 100%; */
+            z-index: -1;
+        }
+
+        .center img {
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #name {
+            width: 300px;
+            height: 40px;
+        }
+
+        .sousuo .list {
+            height: 0;
+            width: 300px;
+            z-index: 2;
+            overflow: hidden;
+            transition: all .5s;
+        }
+
+        .sousuo .list li {
+            line-height: 30px;
+            border-bottom: 1px solid yellow;
+            border-radius: 6px;
+            background: #58bc58;
+        }
+
+        .sousuo .list .active {
+            background: red;
+        }
+
+        #search {
+            padding: 12px 50px;
+        }
+
+        .gundong {
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="sousuo">
+            <input type="text" name="" id="name" placeholder="请输入歌名">
+            <input type="button" value="搜索" id="search">
+            <ul class="list">
+                <li>薛之谦 - 这么久没见</li>
+                <li>Misty Miller - Home</li>
+                <li>Todd Carey - Gotta Be Next To You</li>
+                <li>薛之谦 - 这么久没见</li>
+                <li>Misty Miller - Home</li>
+                <li>Todd Carey - Gotta Be Next To You</li>
+            </ul>
+        </div>
+        <div class="center">
+            <!-- <img src="../img/lin44.gif" alt=""> -->
+        </div>
+        <div class="gundong">
+            <audio id="ad" controls="" autoplay="" src="">
+            </audio>
+        </div>
+
+    </div>
+</body>
+<script>
+    /*
+        -点击下拉：下拉框出现
+        -点击切换歌曲
+        -上下键切换歌曲
+        -点击旁边空白处，下拉框消失
+        -video播放器实现切歌：src属性修改 （http://ms.xinder.cc/）
+    */
+    (function () {
+        var name = document.getElementById('name');
+        var search = document.getElementById('search');
+        var list = document.getElementsByClassName('list')[0];
+        var alis = document.getElementsByTagName('li');
+        var istrue = true;
+        // 点击的时候下拉框出现
+        name.onclick = function (ev) {
+            if (istrue) {
+                list.style.height = '200px'; //弹出
+            } else {
+                list.style.height = '0'; //关闭
+            }
+            name.value = '';
+            istrue = !istrue; //自反
+            ev.stopPropagation(); //阻止冒泡
+        };
+        //添加点击事件 点击空白消失下拉菜单
+        document.onclick = function () {
+            list.style.height = '0'; //点击空白的时候消失
+            istrue = !istrue;
+        };
+        // 上下键切换歌曲
+        // 1.创建一个数组，装歌曲,点击li里面的歌曲绑定相应索引
+        // 2.点击上下键的时候切换相应索引的歌曲
+        var arr = [
+            '../img/薛之谦 - 这么久没见.mp3',
+            '../img/Misty Miller - Home.mp3',
+            '../img/Todd Carey - Gotta Be Next To You.mp3',
+            '../img/薛之谦 - 这么久没见.mp3',
+            '../img/Misty Miller - Home.mp3',
+            '../img/Todd Carey - Gotta Be Next To You.mp3'];
+
+        var avd = document.getElementById('ad');
+        for (var i = 0; i < alis.length; i++) {
+            alis[i].index = i;
+            alis[i].onclick = function () {
+                name.value = alis[this.index].innerHTML; //点击后搜索框得到对应歌名
+                avd.src = arr[this.index];
+                istrue = !istrue;
+            }
+        }
+        // 封装排他
+        function remove(){
+            for (var i = 0; i < alis.length; i++) {
+                    alis[i].className = '';
+                }
+        }
+        //   -上下键切换歌曲  
+        var num = 0;
+        document.onkeydown = function (ev) {
+            if (ev.keyCode == 40) { //  下键
+                num++;
+                if (num >= alis.length) {
+                    num = 0;
+                }
+                for (var i = 0; i < alis.length; i++) {
+                    alis[i].className = '';
+                }
+                alis[num].className = 'active';
+            } else if (ev.keyCode == 38) {//上键
+                num--;
+                if (num <= 0) {
+                    num = 0;
+                }
+                for (var i = 0; i < alis.length; i++) {
+                    alis[i].className = '';
+                }
+                alis[num].className = 'active';
+            }
+            if (ev.keyCode == 13) {//回车键
+                name.value = alis[num].innerHTML;
+                avd.src = arr[num];
+            }
+
+        }
+
+        // btn.onclick = function () {
+        //     var musicname = name.value;
+        //     for (var i in arr) {
+        //         if (musicname == item) {
+        //             name.value = musicname;
+        //             avd.src = arr[num];
+        //         }
+        //     }
+        // }
+    })();
+
+</script>
+
+</html>

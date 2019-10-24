@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>爆款促销</title>
+		<style>
+			.btn {
+				position: relative;
+			}
+			
+			#countDown {
+				position: absolute;
+				left: 55px;
+				top: 50%;
+				transform: translate(0, -58%);
+			}
+		</style>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="goods">
+			<img src="../img/g3.jpg" id="meinv">
+			<h4>今年过节不收礼，收礼只收黑妹子</h4>
+			<p class="price">价格：<span>9.8W</span></p>
+			<div class="btn">
+				<div id="countDown"></div>
+				<img src="../img/btn_buy0.jpg" id="btnBuy">
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+      
+            /*
+                 需求：倒计时，当到达某个时间点，切换图片和按钮
+                     * 计算时间差：截止时间和当下时间的差值
+                         * 截止时间:自己写
+                         * 新的时间：不断的获取(定时器)
+            */
+            var meinv = document.getElementById('meinv');
+            var countDown = document.getElementById('countDown');
+            var btnBuy = document.getElementById('btnBuy');
+            
+            //封装一个函数：计算差值，显示到节点
+            var endtime = '2019-8-27 17:49:30';
+            var end = new Date(endtime);//把字符串转成日期
+            function setTime() {
+                var now = new Date();//获取系统时间
+                var dis = parseInt((end - now)/1000);//两个日期相减：先转成纪元时间再相减，得到毫秒数
+                //显示：xx天xx时xx分xx秒
+                var time = timeset(dis);//把秒数转成指定格式再显示
+                //时间显示
+                countDown.innerHTML = `剩余时间:${time.days}天${time.hours}时${time.mins}分${time.secs}秒`;
+                if(dis <= 0) {
+                    //临界点：替换商品和按钮的图片
+                    meinv.src = '../img/face/1.png';
+                    btnBuy.src = '../img/btn_buy.jpg';
+                    countDown.innerHTML = '';//清空数据
+                    clearInterval(timer);//清除定时器
+                }
+                console.log(dis);
+                
+                
+            }
+            setTime();
+            //开启定时器
+            var timer = setInterval(setTime, 1000);
+      
+    </script>
+</html>

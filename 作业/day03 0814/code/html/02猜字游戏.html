@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="shuzi">
+    <input type="button" id="btn" value="测试">
+</body>
+<script>
+     
+    var shuzi =document.getElementById("shuzi");
+    var btn = document.getElementById("btn");
+    var ranNum=parseInt(Math.random() * 100) + 1;
+    btn.onclick = function(){
+        var val=shuzi.value;
+        if(val){
+            // 不为空，有值
+            if(val > ranNum){
+                alert("你猜大了");
+            }
+            if(val == ranNum){
+                alert("你猜对了");
+            }
+            if(val < ranNum){
+                alert("你猜小了");
+            }
+        }
+        else{
+            alert("请输入一个数字");
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,7 @@
+
+1.github.com 申请一个账号
+
+安装软件：3个git软件
+
+申请阿里云服务器（12号申请）：https://free.aliyun.com/ntms/free/personal.html?handle=true
+

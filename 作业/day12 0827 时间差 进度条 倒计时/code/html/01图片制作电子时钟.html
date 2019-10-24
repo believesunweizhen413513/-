@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片制作电子时钟</title>
+    <!-- <script>
+        // 琳姐
+        var output = document.getElementById('output');
+        function gettime() {
+            var time = new Date();
+            var year = time.getFullYear();
+            var mon = time.getMonth() + 1;
+            var day = time.getDate();
+            //作业：先拼接年月日   2019-02-11
+            var hours = time.getHours();
+            var min = time.getMinutes();
+            var sec = time.getSeconds();
+            function toDb(num) {
+                if (num < 10) {
+                    return '0' + num;
+                } else {
+                    return '' + num;
+                }
+            }
+            var html = toDb(hours) + toDb(min) + toDb(sec);
+            // console.log(html.length);//? 142903  拼接得到的字符串
+
+            //循环
+            // console.log(html.charAt(0));//1
+            var res = '';//准备用于存放创建好的img标签
+            var num = 0;
+            for (var i = 0; i < html.length; i++) {
+                res += `<img src="../img/${html.charAt(i)}.png" alt="">`;
+                num++;
+                if (num % 2 == 0) {
+                    //加冒号
+                    res += ':';
+                }
+            }
+            output.innerHTML = res.slice(0, -1);
+        }
+        gettime();
+        //开启定时器
+        setInterval(gettime, 1000);
+    </script> -->
+    <style>
+        body {
+            font-size: 50px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="output"></div>
+</body>
+<script>
+    // 自己
+    /*需求：
+			 		* 获取系统时间：时分秒(补零)
+			 		* 用图片取代数字
+			 		* 显示图片*/
+    // 获取时间
+    var output = document.getElementById('output');
+    function time() {
+        var time = new Date();
+        var year = time.getFullYear();
+        var month = time.getMonth();
+        var week = time.getDay();
+        var day = time.getDate();
+        var hours = time.getHours();
+        var mins = time.getMinutes();
+        var sec = time.getSeconds();
+        // 补零
+        function toDb(num) {
+            if (num < 10) {
+                return "0" + num;
+            }
+            return "" + num;
+        }
+        var html1 = toDb(year);
+        var html2 = toDb(hours) + toDb(mins) + toDb(sec);
+        var html3 = toDb(month) + toDb(day);
+        // console.log(html);//150643
+        // 定义一个参数，准备存图片
+        var res = "";
+        // 定义一个num 当num整除2的时候，就加：号，最后一个：号不要
+        num = 0;
+        for (i = 0; i < html1.length; i++) {
+            res += `<img src="../img/${html1.charAt(i)}.png" alt="">`
+            num++;
+            if (num % 4 == 0) {
+                res += "-";
+            }
+        }
+        for (i = 0; i < html3.length; i++) {
+            res += `<img src="../img/${html3.charAt(i)}.png" alt="">`
+            num++;
+            if (num == 8) {
+                res += " ";
+
+            } else {
+                if (num % 2 == 0) {
+                    res += "-";
+                }
+
+            }
+
+
+        }
+        for (i = 0; i < html2.length; i++) {
+            res += `<img src="../img/${html2.charAt(i)}.png" alt="">`
+            num++;
+            if (num % 2 == 0) {
+                res += ":";
+            }
+        }
+
+        output.innerHTML = res.slice(0, -1);//去掉最后一个：号
+    }
+    time();
+    setInterval(time, 1000);
+</script>
+
+</html>

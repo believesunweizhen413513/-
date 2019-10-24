@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用数组实现斐波那契数列</title>
+</head>
+
+<body>
+    <input type="text" id="num">
+    <input type="button" value="兔子数列" id="btn">
+    <div id="box"></div>
+    <p id="p"></p>
+</body>
+<script>
+
+    // 自己
+    (function () {
+        var n = prompt('请输入一个数');
+        var arr = [];
+        for (var i = 0; i < n; i++) {
+            if (i < 2) {
+                arr.push(1);
+            } else {
+                arr[i] = arr[i - 1] + arr[i - 2];
+            }
+        }
+        document.write('组成的数组为:[' + arr + ']')
+    })()
+        // 同桌陈浩彬
+        (function () {
+            var text = document.getElementById("text");
+            var btn = document.getElementById("btn");
+            btn.onclick = function () {
+                num = text.value;
+                var arr = [];
+                for (i = 0; i < num; i++) {
+                    var a = show(i);
+                    arr.push(a);
+                    function show(n) {
+                        if (n < 2) {
+                            return 1;
+                        }
+                        return show(n - 1) + show(n - 2)
+                    }
+                }
+                p.innerHTML = '组成的数组为:[' + arr + ']';
+                // document.write('组成的数组为:[' + arr + ']')
+
+            }
+        })();
+    // 琳姐
+    (function () {
+        var btn = document.getElementById('btn');
+        var num = document.getElementById('num');
+        var box = document.getElementById('box');
+        // var arr = [];//兔子数列  [1,1,2,3,5] 某一项==前两项之和(n>2)
+        //琳姐这个要做小修改，要把这个放到点击事件里面，这样每次才能清空上次的数据，否则新的数组会在上次的基础上出现
+        btn.onclick = function () {//面试题：记住 递归实现，数组实现
+            var val = num.value;
+            var arr = [];//修改后的
+            for (var i = 0; i < val; i++) {
+                if (i < 2) {
+                    arr.push(1);
+                } else {
+                    arr[i] = arr[i - 1] + arr[i - 2];
+                }
+            }
+            box.innerHTML = '[' + arr + ']';
+        }
+    })();
+</script>
+
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        #box #head {
+            width: 100%;
+            height: 200px;
+            background-color: palegoldenrod;
+            font-size: 72px;
+            line-height: 200px;
+            text-align: center;
+        }
+
+        #box .list {
+            width: 100%;
+            display: flex;
+        }
+
+        .pos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        #box .list li {
+            flex: 1;
+            height: 80px;
+            line-height: 80px;
+            font-size: 18px;
+            text-align: center;
+            background-color: #58bc58;
+            border: 1px solid #ccc;
+            font-weight: bold;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #box .list .active {
+            background-color: #fff;
+            color: #58bc58;
+            border-top: 3px solid red;
+            border-bottom: none;
+            position: relative;
+        }
+
+        #box .list .active::after {
+            content: '';
+            display: block;
+            border: 6px solid transparent;
+            border-top-color: red;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        #box .con {
+            width: 100%;
+            height: 3000px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .listbox {
+            border: 2px solid gold;
+            border-radius: 10px;
+            width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .list h4 {
+            margin: 0 0 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid gold;
+            color: gold;
+        }
+
+        #news {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            line-height: 2;
+            color: green;
+        }
+
+        form {
+            margin: 100px auto 0;
+            width: 600px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        form input {
+            float: left;
+            width: 480px;
+            height: 50px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        form #btn {
+            float: left;
+            width: 120px;
+            height: 50px;
+        }
+
+        .bGd {
+            height: 110px;
+            width: 100%;
+            display: none;
+            background-image: url(../img/list2.gif);
+            background-size: cover;
+        }
+
+        .bGd p {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .fix {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="head">头部</div>
+        <ul class="list">
+            <!-- <li>店铺信息</li>
+            <li class="active" style="display: block;">商品详情</li>
+            <li>累计评价</li>
+            <li>加入购物车</li> -->
+        </ul>
+        <ul class="con">
+            <!-- <li><img src="../img/list2.gif" alt=""></li>
+            <li>
+               <img src="../img/list1.gif" alt="">
+            </li>
+            <li>
+                <div class="listbox">
+                    <h4>最新消息(只展示最多5条消息)</h4>
+                    <ul id="news">
+                    </ul>
+                </div>
+                <form action="">
+                    <input type="text" id="tex">
+                    <input type="button" value="点击添加" id="btn">
+                </form>
+            </li>
+            <li>假装是个购物车</li> -->
+        </ul>
+        
+        <!-- 底部广告 -->
+        <div class="bGd">
+            <p>X</p>
+        </div>
+    </div>
+   
+</body>
+<script src="../js/comm.js"></script>
+<script src="../js/01.js"></script>
+<script src="../js/02.js"></script>
+<script>
+    /*
+        要用onscroll事件，在不断滚动的同时，用scrollY来获取现在的可视窗口距离浏览器顶部的距离，
+        然后还要用offsetTop来获取list距离顶部的距离，再判断scrollY何时大于等于这个距离，
+        满足条件的时候，就把active类名添加给list节点，没满足的时候，就把active类名给去掉就好了
+    */
+
+    (function () {
+
+        let box = getid('box');
+        let list = box.getElementsByClassName('list')[0];
+        let con = box.getElementsByClassName('con')[0];
+        let oldData = ['1111111111', '22222222', '333333'];
+        let data = [];
+        oldData.forEach(function (item) {
+            data.push(cnm(item));//cnm封装好的过滤敏感词的函数
+        });
+
+        tabs({
+            ele: 'box',
+            start: 1,
+            liName: ['店铺信息', '商品详情', '累计评价', '加入购物车', '测试']
+        });
+
+
+
+        ceilbot({
+            ele: 'box',
+            num: 1
+        });
+
+        let aLis2 = con.getElementsByTagName('li');
+        aLis2[0].innerHTML = `<img src="../img/list2.gif" alt="">`;
+
+        aLis2[1].innerHTML = `<img src="../img/list1.gif" alt="">`;
+
+        aLis2[2].innerHTML = `  <div class="listbox">
+                                <h4>最新消息(只展示最多5条消息)</h4>
+                                    <ul id="news">
+                                    </ul>
+                                </div>
+                                <form action="">
+                                    <input type="text" id="tex">
+                                    <input type="button" value="点击添加" id="btn">
+                                </form>`;
+
+        aLis2[3].innerHTML = `假装是个购物车`;
+
+
+
+        let tex = getid('tex');
+        let btn = getid('btn');
+        let news = getid('news');
+
+        inti();
+        function inti() {//初始状态
+            var html = '';
+            var num = 1;//计数器
+            for (var i = 0; i < data.length; i++) {
+                num++;
+                html += '<li>' + (i + 1) + '、' + data[i] + '</li>';//拼接内容
+                if (num > 5) {//数据超过5条时，删掉最后一条
+                    data.pop();
+                }
+            }
+            news.innerHTML = html;
+        }
+
+
+        function yanz() {
+            var tex1 = tex.value;
+            if (tex1) {//非空判断
+                tex1 = cnm(tex1);//过滤敏感词
+                data.unshift(tex1);//添加在最前面
+                inti();
+            } else {
+                alert('不要输入为空ヾ(≧O≦)〃嗷~')
+            }
+            tex.value = '';
+            tex.focus();//聚焦嗷
+        }
+
+
+        //点击的时候提交留言
+        btn.onclick = function () {
+            yanz();
+        }
+
+        //实现回车上交
+        tex.onkeydown = function (ev) {
+            console.log(ev.keyCode);
+            if (ev.keyCode == 13) {
+                yanz();
+                ev.preventDefault();
+            }
+        }
+    })();
+</script>
+
+</html>

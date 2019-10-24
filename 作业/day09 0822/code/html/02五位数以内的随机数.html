@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var random=[]
+    for(i=0;i<5;i++){
+        random.push(parseInt(Math.random()*10));
+    };
+    random.forEach(function(item,index){
+        console.log('第'+(index+1)+'位是'+ item);   
+    })
+    console.log("随机生成的数是"+random.join(''));
+</script>
+</html>

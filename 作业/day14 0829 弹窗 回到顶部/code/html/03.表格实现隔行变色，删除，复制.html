@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>表格实现隔行变色，删除，复制</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#body {
+			padding: 50px;
+		}
+
+		#tb {
+			border-collapse: collapse;
+		}
+
+		#tb td {
+			width: 100px;
+			height: 30px;
+			border: 1px solid #ccc;
+			text-align: center;
+			line-height: 30px;
+		}
+	</style>
+</head>
+
+<body>
+	<label for="">用户名：</label>
+	<input type="text" id="tex1">
+	<label for="">密码：</label>
+	<input type="text" id="tex2">
+	<input type="button" id="btn" value="创建">
+	<table id="tb" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td>用户名</td>
+				<td>密码</td>
+				<td>删除</td>
+				<td>复制</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>张三</td>
+				<td>1234456</td>
+				<td><a href="###" class="delete">删除</a></td>
+				<td><a href="###" class="clone">复制</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+<script>
+    /*
+		需求：
+			* 根据内容创建节点，插入到表格
+			* 隔行变色
+			* 点击可以删除当行
+			* 点击复制可以复制当行
+	*/
+	var tex1 = document.getElementById("tex1");
+	var tex2 = document.getElementById("tex2");
+	var btn = document.getElementById("btn");
+	var tb = document.getElementById('tb');
+	var tbodys = tb.tBodies[0];//找到tbody节点
+	var rows = tbodys.getElementsByTagName("tr");
+	var dels = tbodys.getElementsByClassName("delete");
+	var clones = tbodys.getElementsByClassName("clone");
+	btn.onclick = function () {
+		var username = tex1.value.trim();
+		var pasw = tex2.value.trim();
+		if (username && pasw) {
+			var html = `<tr>
+				<td>${username}</td>
+				<td>${pasw}</td>
+				<td><a href="###" class="delete">删除</a></td>
+				<td><a href="###" class="clone">复制</a></td>
+			</tr>`
+			tbodys.innerHTML += html;
+			tex1.value = "";
+			tex2.value = "";
+			tex1.focus();
+		} else {
+			alert("请输入两个内容")
+		}
+		setCorlo();
+		function setCorlo() {
+			for (var i = 1; i <= rows.length; i++) {
+				tb.rows[0].style.backgroundColor = "red";
+				if (i % 2 == 0) {
+					tb.rows[i].style.backgroundColor = "pink";
+				} else {
+					tb.rows[i].style.backgroundColor = "yellow";
+				}
+			}
+		}
+
+		function deles() {
+			for (var i = 0; i < dels.length; i++) {
+				dels[i].onclick = function () {
+					var res = confirm("您确定不要我了吗？");
+					if (res) {
+						this.parentNode.parentNode.style.display = "none";
+					}
+				}
+			}
+			setColor();
+		}
+		deles();
+		function clon() {
+			for (var i = 0; i < clones.length; i++) {
+				clones[i].onclick = function () {
+					var newTr = this.parentNode.cloneNode(true);
+				
+				}
+			}
+		}
+	}
+</script>
+
+</html>

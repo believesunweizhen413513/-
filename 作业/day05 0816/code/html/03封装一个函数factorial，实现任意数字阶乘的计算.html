@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装一个函数factorial，实现任意数字阶乘的计算</title>
+</head>
+<body>
+    
+</body>
+<script>
+    (function(){
+        function factorial(num){
+            var n=1;
+            for(i=1;i<=num;i++){
+                n*=i;  
+            } 
+            return n;
+        }
+        var rs=factorial(3);
+        document.write('write:' + rs +"<br>"); 
+        var rs1=factorial(6);
+        document.write('write:' + rs1+"<br>"); 
+    })();
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08倒计时广告</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+        }
+        #box {
+            width: 400px;
+            height: 200px;
+            margin: 0 auto;
+            border: 1px solid salmon;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           margin-left: -200px;
+          margin-top: -100px;
+        }
+
+        #box img {
+            width: 100%;
+            height: 100%;
+            
+        }
+        #box #time{
+            margin: 0 auto;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin-left: -200px;
+          margin-top: -100px;
+          color: red;
+        }
+        #close {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            cursor: pointer;
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="box">
+        <img src="../img/g1.jpg" alt="">
+        <span id="time">5秒</span>
+        <span id="close">X</span>
+    </div>
+</body>
+<script>
+    /*
+          需求：倒计时广告
+              * 5秒后广告自动关闭
+              * 点击关闭按钮提前关闭广告
+   */
+    (function(){
+        var box = document.getElementById('box');
+        var time = document.getElementById('time');
+        var close = document.getElementById('close');
+        var n=5;
+        function settime(){
+            n--;
+            if(n<0){
+                box.style.display="none";//广告自动关闭
+                clearInterval(timer);
+            }
+            time.innerHTML = n + '秒';
+        }
+        var timer=setInterval(settime,1000);
+        //点击按钮自动关闭广告
+        close.onclick = function() {
+            box.style.display = 'none';
+            clearInterval(timer);//关闭定时器
+        }
+    })();
+</script>
+
+</html>

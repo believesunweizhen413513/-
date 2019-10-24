@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生成任意表格</title>
+    <style>
+        #output {
+            margin-top: 20px;
+        }
+
+        table {
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 3px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>生成任意表格</h1>
+    <label for="row">行：</label><input type="text" id="row">
+    <label for="col">列：</label><input type="text" id="col">
+    <input type="button" value="生成表格" id="btn">
+    <div id="output">
+        <table>
+            <!-- <tr>
+                <td contenteditable="true">121</td>
+                <td>
+                    <a href="###">删除</a>
+                </td>
+            </tr> -->
+        </table>
+    </div>
+</body>
+<script>
+    /*
+        需求：根据表单输入的行数和列数，动态的生成表格
+
+        步骤：
+            * 点击按钮的时候
+            * 获取行数和列数,就可以知道循环次数，外循环生成tr，内循环生成td
+            * 创建好的节点插入到页面中
+            * 隔行变色
+    */
+
+    (function () {
+
+        var btn = document.querySelector('#btn');
+        var row = document.querySelector('#row');
+        var col = document.querySelector('#col');
+        var output = document.querySelector('#output table');
+
+        //点击按钮的时候
+        btn.onclick = function () {
+            output.innerHTML="";
+            var rows = row.value.trim();
+            var clos = col.value.trim();
+            if (rows && clos) {
+                // 非空才创建
+                // 外循环，创建行
+                for (var i = 0; i < rows; i++) {
+                    var tr = document.createElement("tr");
+                    if (i % 2 == 0) {
+                        tr.style.backgroundColor = "pink";
+                    } else {
+                        tr.style.backgroundColor = "#58bc58";
+                    }
+                    //在前面加一行，填序号
+                    var firstTd = document.createElement("td");
+                    firstTd.innerHTML = `${i + 1}`;
+                    tr.appendChild(firstTd);//创建一定要跟插入一起使用否则不起作用
+                    // 内循环创建列
+                    for (var j = 0; j < clos; j++) {
+                        var td = document.createElement("td");
+                        td.innerHTML = `第${i + 1}行第${j + 1}列`;
+                        tr.appendChild(td);
+                    }
+                    // 多添加一行，添加删除，复制功能
+                    var lastTd = document.createElement("td");
+                    lastTd.innerHTML = `<a class="dele" href="###">删除</a>&nbsp;&nbsp;<a class="clone" href="###">复制</a>`;
+                    tr.appendChild(lastTd);
+                    output.appendChild(tr);
+
+                }
+                row.value = "";
+                col.value = "";
+                row.focus();
+            }
+            else {
+                alert("请输入内容");
+
+            }
+            var del = document.querySelectorAll(".dele");
+            var clone = document.querySelectorAll(".clone");
+            function dele() {
+                for (var j = 0; j < del.length; j++) {
+                    del[j].onclick = function () {
+                        var res = confirm("确定删除？")
+                        if (res) {
+                            output.removeChild(this.parentNode.parentNode);
+                        }
+                    }
+                }
+            }
+            dele();
+
+
+            function clones() {
+                for (var j = 0; j < clone.length; j++) {
+                    clone[j].onclick = function () {
+                        var res = confirm("确定复制？")
+                        if (res) {
+                            var clon = this.parentNode.parentNode.cloneNode(true);
+                            output.appendChild(clon);
+                        }
+                    }
+                }
+            }
+            clones();
+        }
+        /*
+            关于数据渲染到页面：
+                * DOM方式创建和插入节点实现页面渲染：DOM被频繁的操作，页面性能下降，第一个会耗费更多的时间，内存；第二个不利于搜索引擎优化 SEO(自然排名) SEM(百度竞价)
+                * 字符串拼接：性能更好，拼接好数据，一次性的渲染出来，不会频繁的改动DOM节点；
+        */
+
+    })();
+
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生成一个四位数随机数：封装函数：0-9之间任意4个数字组合</title>
+    <style>
+        #inf {
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            /* border: 1px solid #ccc; */
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    请输入验证码：<input type="text" id="num">
+    <input type="button" id="yz" value="验证码">
+    <input type="button" id="btn" value="提交"><br>
+    <span id="inf"></span>
+</body>
+<script>
+    (function () {
+        var num = document.getElementById("num");
+        var yz = document.getElementById("yz");
+        var btn = document.getElementById("btn");
+        //  生成一个四位数随机数：封装函数：0-9之间任意4个数字组合
+        // * 点击一次，生成一个随机数替换num的值 
+        // * 点击提交的时候：验证输入的数据是否和随机数一样，给出提示
+
+        function yanzheng(n) {
+            var sum = "";
+            for (i = 0; i < n; i++) {
+                var num = parseInt(Math.random() * 10);
+                sum += num;
+            }
+            return sum;
+        }
+        yz.value = yanzheng(4);  //一开始马上生成一个四位的数字
+        yz.onclick = function () {  //点击按钮，切换数字，覆盖前面的
+            yz.value = yanzheng(4);
+        }
+        btn.onclick = function () {//点击提交按钮，获取数字，进行对比， 两个数字相等，验证通过，否则 不通过； 
+            var val1 = num.value;
+            var val2 = yz.value;
+            if (val1 == val2) {
+                inf.innerHTML = '验证通过';
+                inf.style.color = '#58bc58';
+
+            } else {
+                inf.innerHTML = '验证不通过';
+                inf.style.color = 'red';
+
+            }
+        }
+
+    })();
+
+</script>
+
+</html>

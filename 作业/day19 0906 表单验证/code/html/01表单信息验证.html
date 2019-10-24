@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01表单信息验证</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 600px;
+            height: 600px;
+            background: #ededed;
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+
+        }
+
+        label:nth-child(1) {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<script src="../js/js.js"></script>
+
+<body>
+    <div id="box">
+        <form id="myform" action="05success.html" method="get">
+            <div class="roundedCorners">
+                <label class="label">昵称</label>
+                <input id="nickname" name="nickname" type="text" /><span></span><br /><br />
+                <label class="label">电子邮件</label>
+                <input id="email" name="email" type="text" /><span></span><br /><br />
+                <label class="label">身份证</label>
+                <input id="idcard" name="identity" type="text" /><span></span><br /><br />
+                <label class="label">手机号码</label>
+                <input id="tel" name="tel" type="text" /><span></span><br /><br />
+                <label class="label">日期</label>
+                <input id="date" name="birthday" type="text" /><span></span><br /><br />
+                <label class="label">密码</label>
+                <input id="pass" name="password" type="password" /><span></span><br /><br />
+                <label class="label">确认密码</label>
+                <input id="surepass" name="surepass" type="password" /><span></span><br /><br />
+                <input type="checkbox" class="checkbox" />
+                <label>10天内免登陆</label>
+                <br />
+
+                <input type="submit" id="btnCheck" value="确定" />
+
+                <input type="reset" value="清空" />
+            </div>
+        </form>
+    </div>
+
+</body>
+<script>
+    (function () {
+        // 获取节点
+        var inps = document.querySelectorAll('#box input');
+        var spas = document.querySelectorAll('#box span');
+        var sub = document.getElementById('submit');
+        var ret = document.getElementById('reset');
+        var pass = document.getElementById('pass');
+        
+        checkInput({
+            ele: inps[1],
+            spas: spas[1],
+            type: 'email',
+            noval: '请输入电子邮件',
+            checkYes: '√',
+            checkNo: '电子邮件输入错误'
+        });
+        checkInput({
+            ele: inps[2],
+            spas: spas[2],
+            type: 'idcard',
+            noval: '请输入身份证',
+            checkYes: '√',
+            checkNo: '身份证输入错误'
+        });
+        checkInput({
+            ele: inps[3],
+            spas: spas[3],
+            type: 'tel',
+            noval: '请输入手机号码',
+            checkYes: '√',
+            checkNo: '手机号码输入错误'
+        });
+        checkInput({
+            ele: inps[4],
+            spas: spas[4],
+            type: 'date',
+            noval: '请输入日期',
+            checkYes: '√',
+            checkNo: '日期输入错误'
+        });
+        checkInput({
+            ele: inps[5],
+            spas: spas[5],
+            type: 'password',
+            noval: '请输入密码',
+            checkYes: '√',
+            checkNo: '密码输入错误'
+        });
+        checkInput({
+            ele: inps[6],
+            spas: spas[6],
+            type: 'surepass',
+            noval: '请输入确认密码',
+            checkYes: '√',
+            checkNo: '确认密码输入错误'
+        });
+
+        sub.onclick = function () {
+            var isok = true;
+            for (var i = 0; i < inps.length; i++) {
+                if (!inps[i].istrue) {
+                    isok = false;
+                    break;
+                }
+            }
+            if (isok) {
+                window.open('02.html?' + inps[1].value);
+            } else {
+                alert('请先完成验证嗷');
+            }
+        }
+
+        //点击ret，重置页面
+        ret.onclick = function() {
+            location.reload();
+        }
+        
+    })();
+</script>
+
+</html>

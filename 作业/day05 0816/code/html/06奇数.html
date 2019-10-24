@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <label for="num1">数值一:</label><input type="text" id="num1">
+    <label for="num2">数值二:</label><input type="text" id="num2">
+    <input type="button" id="btn" value="生成">
+
+</body>
+<script type="text/javascript">
+    /*编写一个函数，计算任意两个数字之间所能组成的奇数个数，数字必须是个位数
+    比如： 计算0-3之间能组成的奇数个是01、21、03、13、23、31*/
+    var num1 = document.getElementById('num1');
+    var num2 = document.getElementById('num2');
+    var btn = document.getElementById('btn');
+    btn.onclick = function () {
+        _num1 = num1.value;
+        _num2 = num2.value;
+        getOdd(_num1, _num2);
+    }
+    function getOdd(m, n) {
+        if (m >= 10 || n >= 10) {//如果m,n大于10 ，直接返回，
+            // return;
+            alert('请输入个位数的数字');
+        }
+
+        //for循环生成i,j之间的所有值
+        for (var i = m, count = 0; i <= n; i++) {
+            for (var j = m; j <= n; j++) {
+                if (i != j && j % 2 != 0) {//i!=j并且j不为偶数满足条件输出
+                    count++;
+
+                    console.log("" + i + j);//打印i,j的字符串输出
+
+                }
+            }
+        }
+        alert('两个数字之间所能组成的奇数个数' + count);
+        console.log(count);
+    }
+
+</script>
+
+</html>

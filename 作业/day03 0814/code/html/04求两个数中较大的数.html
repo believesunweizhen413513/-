@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .box{
+        width: 700px;
+        height: 400px;
+        margin: auto;
+        border: 1px solid salmon;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>请输入两个数</h1>
+       <!-- 第一个数 -->
+        请输入第一个数：<input type="text" id="shu1"><br>
+       <!-- 第二个数 -->
+       请输入第二个数：<input type="text" id="shu2"><br>
+       <!-- 较大的数 -->
+       <input type="button" id="btn" value="测试">
+       <p id="p"></p>
+    </div>
+</body>
+<script>
+    // 1.获取两个数，判断大小
+    // 2. 将较大的数赋值给max;
+    // 3.输出max的值
+    var shu1 = document.getElementById("shu1");
+    var shu2 = document.getElementById("shu2");
+    var max = document.getElementById("max");
+    var btn = document.getElementById("btn");
+    var max;
+    var val1=shu1.value;
+    var val2=shu2.value;
+    btn.onclick = function(){
+    var val1=shu1.value*1;
+    var val2=shu2.value*1;
+    if(val1 > val2){
+        max=val1;
+        p.innerHTML = "数1大";
+    }
+    else if(val1 < val2){
+        max=val2;
+        p.innerHTML = "数2大";
+    }
+    else if(val1 == val2){
+        max=val2=val1;
+        p.innerHTML = "相等";
+    }
+   }
+</script>
+</html>

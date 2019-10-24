@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 在IE9 + 和其他标准浏览器中，div与p之间的空白区域被认为是第一个子节点为空白节点（即文本节点），
+    // div显示数字3。
+    // 在IE8和IE8以下浏览器中，div显示数字1，是元素节点。
+    // nodeType 属性返回以数字值返回指定节点的节点类型。
+    // 1 代表元素节点 ; 2 代表属性节点; 3 代表文本节点;
+
+    function firstChild(noed) {
+        if (node.firstElementChild) {
+            return node.firstElementChild;
+        } else {
+            return node.firstChild;
+        }
+    }
+
+    function lastChild(noed) {
+        if (node.lastElementChild) {
+            return node.lastElementChild;
+        } else {
+            return node.lastChild;
+        }
+    }
+
+
+    function previouSibling(noed) {
+        if (node.previouElementChild) {
+            return node.previouElementChild;
+        } else {
+            return node.previouChild;
+        }
+    }
+
+    function nextSibling(noed) {
+        if (node.nextElementChild) {
+            return node.nextElementChild;
+        } else {
+            return node.nextChild;
+        }
+    }
+</script>
+
+</html>

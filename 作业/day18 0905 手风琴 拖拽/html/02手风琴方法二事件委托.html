@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手风琴事件委托</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #box {
+            margin: 50px;
+        }
+
+        #box h1 {
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: pink;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: lighter;
+            border: 1px solid #000;
+        }
+        #box .cons{
+			width: 120px;
+			height: auto;
+		}
+        #box ul {
+            width: 120px;
+            height: 0px;
+            /* 记得加上   overflow: hidden;，否则最后一个ul的li会占据位置 */
+            overflow: hidden;
+            color: #58bc58;
+            transition: all .5s;
+        }
+
+        #box ul li {
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #ededed;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="cons">
+            <h1>体育</h1>
+            <ul>
+                <li>体育1</li>
+                <li>体育2</li>
+                <li>体育3</li>
+                <li>体育1</li>
+                <li>体育2</li>
+                <li>体育3</li>
+            </ul>
+        </div>
+        <div class="cons">
+            <h1>体育</h1>
+            <ul>
+                <li>体育1</li>
+                <li>体育2</li>
+                <li>体育3</li>
+                <li>体育1</li>
+                <li>体育2</li>
+                <li>体育3</li>
+            </ul>
+        </div>
+        <div class="cons">
+            <h1>体育</h1>
+            <ul>
+                <li>体育1</li>
+                <li>体育2</li>
+                <li>体育3</li>
+                <li>体育1</li>
+                <li>体育2</li>
+                <li>体育3</li>
+            </ul>
+        </div>
+        <div class="cons">
+            <h1>体育</h1>
+            <ul>
+                <li>体育1</li>
+                <li>体育2</li>
+                <li>体育3</li>
+                <li>体育1</li>
+                <li>体育2</li>
+                <li>体育3</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    (function () {
+        // 委托给父元素 cons ，鼠标移入的时候，让对应的ul显示出来
+        var box = document.querySelector('#box');
+        var btns = box.querySelectorAll('h1');
+        var cons = box.querySelectorAll('#box .cons');
+        for (var i = 0; i < cons.length; i++) {
+            cons[i].onmouseover = function () {
+                var iH = this.children[1].children.length * this.children[1].children[0].offsetHeight;
+                this.children[1].style.height = iH + 'px';
+            }
+            cons[i].onmouseout = function () {
+                this.children[1].style.height = 0 + 'px';
+            }
+        }
+    })();
+</script>
+
+</html>

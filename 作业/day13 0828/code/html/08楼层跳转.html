@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>楼层跳跃</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #menu {
+            position: fixed;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 9999;
+        }
+
+        #menu li {
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #000000;
+            background: #d8d8d8;
+            cursor: pointer;
+
+        }
+
+        #menu .active {
+            background: red;
+        }
+
+        #con {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+        }
+
+        #con li {
+            width: 100%;
+            font-size: 60px;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 80px;
+            box-sizing: border-box;
+        }
+
+        #con li:nth-child(1) {
+            background: lavender;
+        }
+
+        #con li:nth-child(2) {
+            background: lavenderblush;
+        }
+
+        #con li:nth-child(3) {
+            background: lawngreen;
+        }
+
+        #con li:nth-child(4) {
+            background: lightblue;
+        }
+
+        #con li:nth-child(5) {
+            background: lightcoral;
+        }
+
+        #con li:nth-child(6) {
+            background: lightgoldenrodyellow;
+        }
+
+        #con li:nth-child(7) {
+            background: lightcyan;
+        }
+
+        #con li:nth-child(8) {
+            background: lightpink;
+        }
+    </style>
+    <script type="text/javascript">
+        /*
+         需求：
+              * 楼层宽度100%，高度是一屏(js添加高度)
+              * 点击按钮可以跳转到对应楼层(类似选项卡)
+              * 滚动到对应楼层的时候，按钮跟着高亮显示(焦点跟随)
+         */
+        window.onload = function () {
+            var menu = document.getElementById('menu');
+            var btns = menu.getElementsByTagName('li');//按钮
+            var con = document.getElementById('con');
+            var cons = con.getElementsByTagName('li');//楼层:数组
+
+            // cons每个楼层高度让它等于可视窗口的高度
+            for (var i = 0; i < cons.length; i++) {
+                cons[i].style.height = window.innerHeight + "px";
+            }
+            // 点击的时候让它跳转到相应的楼层
+            // 1.帮定事件，让跳转当指定的位置
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].index = i;
+                btns[i].onclick = function () {
+                    clear();//排他
+                    this.className = "active";//点击那个让那个高亮
+                    var top = cons[this.index].offsetTop;//获取这个楼层的高度
+                    window.scrollTo(0, top);//跳转到此楼层的位置
+                }
+            }
+            function clear() {
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].className = "";
+                }
+            }
+            // 滚动到对应楼层的时候，按钮跟着高亮显示(焦点跟随)
+            window.onscroll = function () {
+                var scrollTop = window.scrollY;//获取滚动的位置
+                for (var i = 0; i < btns.length; i++) {
+                    if (scrollTop >= cons[i].offsetTop) {
+                        clear();
+                        btns[i].className = "active";
+                    }
+                }
+            }
+            setTimeout(function () {
+                window.scroll(0, 0);
+            }, 0);
+
+        }
+    </script>
+</head>
+
+<body>
+    <ul id="menu">
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+    <ul id="con">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+</body>
+
+</html>

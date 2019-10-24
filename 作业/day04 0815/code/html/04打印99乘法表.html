@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>打印99乘法表</title>
+    <style>
+        #box{
+            width: 900px;
+            height: 600px;
+        }
+        #box span{
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #999;
+            margin:0px  5px 5px 0px;
+        }
+        #box span:hover{
+            background: pink;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>打印99乘法表</h1>
+    <div id="box">
+          <span></span>
+    </div>
+</body>
+<script>
+    var box=document.getElementById("box");
+    var sum="";
+    for(i=1;i<=9;i++){
+     
+        for(j=1;j<=i;j++){
+            sum+="<span>" + i + "x" + j + "=" + i*j*1 +"&nbsp;&nbsp;" +"</span>";
+        }
+        sum+="<br>";
+    }
+  box.innerHTML=sum;
+</script>
+</html>

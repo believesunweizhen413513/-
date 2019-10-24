@@ -1,0 +1,14 @@
+
+
+乱码：
+    - 编码不统一：统一编码
+        - 数据来源：csv修改编码uft8，再导入数据库中
+        - 数据存储：连接、数据库、数据表都是utf8
+        - 数据的使用:
+            - php :$conn->set_charset('utf8');//设置编码
+            - html：<meta charset="UTF-8">
+    - 软件
+        - 连接：改回自动方式编码
+        - php设置编码：去掉 $conn->set_charset('utf8');//设置编码
+        - 环境导致：重装环境
+        - navicat导致：可以改用默认的界面（http://localhost:1909/phpmyadmin）

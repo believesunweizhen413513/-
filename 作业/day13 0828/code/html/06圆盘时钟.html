@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #face {
+            width: 600px;
+            height: 600px;
+            margin: 20px auto;
+            border-radius: 50%;
+            border: 1px solid blue;
+            position: relative;
+        }
+
+        #second {
+            width: 4px;
+            height: 200px;
+            background-color: #FC5753;
+            position: absolute;
+            left: 298px;
+            top: 100px;
+            /* 设置指针的旋转基点为下方中间位置 */
+            transform-origin: center bottom;
+        }
+
+        #minute {
+            width: 10px;
+            height: 175px;
+            background-color: #0e2218;
+            position: absolute;
+            left: 295px;
+            top: 125px;
+            transform-origin: bottom center;
+        }
+
+        #hour {
+            width: 15px;
+            height: 150px;
+            background-color: #5948ff;
+            position: absolute;
+            left: 292px;
+            top: 150px;
+            transform-origin: bottom center;
+        }
+
+        #center {
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            position: absolute;
+            left: 285px;
+            top: 285px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="face">
+        <div id="hour"></div> <!-- 时针 -->
+        <div id="minute"></div> <!-- 分针 -->
+        <div id="second"></div> <!-- 秒针 -->
+        <div id="center"></div> <!-- 中心的小圆点 -->
+    </div>
+
+</body>
+<script>
+    function toTime() {
+        var time = new Date();
+        var second = time.getSeconds();
+        var minute = time.getMinutes();
+        var hour = time.getHours();
+        var hourDeg = hour % 12 * 30 + minute * 0.5;
+
+        document.getElementById("second").style.transform = "rotate(" + second * 6 + "deg)";
+        document.getElementById("minute").style.transform = "rotate(" + minute * 6 + "deg)";
+        document.getElementById("hour").style.transform = "rotate(" + hourDeg + "deg)";
+    }
+    toTime();
+    setInterval(toTime, 1000);
+// }, 1000);
+</script>
+
+</html>

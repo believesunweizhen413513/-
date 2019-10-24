@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+</head>
+
+<body>
+
+</body>
+<!-- 一个人做项目，全部页面的js都写在一个文件里面:文件过大，每次都要加载大文件，速度会变慢，影响用户体验 -->
+<!-- <script src="js/all.js"></script> -->
+
+<!-- 页面开发：需要用的文件就单独的引进来:1.文件引入过多,请求过多，加载服务器负担；2.同步加载：前面的引入会影响后面代码执行；3.依赖关系复杂不好处理 -->
+<!-- <script src="js/jq.js"></script>
+<script src="js/common.js"></script>
+<script src="js/swiper.js"></script>
+<script src="js/fangdajing.js"></script>
+<script src="js/index.js"></script> -->
+
+<!-- requirejs的使用：优点1.只有一个script的入口；2.异步加载js;3.保证依赖的顺序问题，处理复杂的依赖关系:引入文件的时候省略后缀就是异步加载,主入口文件名可以任取 4.进行模块化开发：某个公共的功能写成一个子模块（js文件）,define()定义的模块是面向对象的写法 -->
+<script src="js/require.js" data-main="js/home"></script>
+
+</html>

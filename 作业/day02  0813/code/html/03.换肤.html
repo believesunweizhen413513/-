@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/01皮肤1.css" id="skin">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        #huohu {
+            width: 100%;
+        }
+
+        .header {
+            height: 40px;
+            background: #ccc;
+        }
+
+        .header .p1 {
+            height: 40px;
+            width: 330px;
+            float: right;
+        }
+
+        .header .p1 .a1 {
+            width: 100%;
+            height: 0px;
+            overflow: hidden;
+           
+        }
+
+        #tu {
+            width: 2100px;
+            height: 0px;
+            text-align: center;
+            overflow: hidden;
+            transition: all 0.5s;
+            padding-top: 100px;
+        }
+        .ttu {
+            height: 158px;
+        }
+        .tu1 {
+            width: 158px;
+            float: left;
+            padding-right: 40px;
+        }
+        .bt{
+            height: 50px;
+            width: 2100px;
+            line-height: 50px;
+           position: relative;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="huohu">
+        <div class="header">
+            <p class="p1">
+                <a href="">意见反馈</a>
+                <input type="button" value="皮肤" id="btn">
+                <a href="">设置</a>
+                <a href="">访问记录</a>
+                <a href="">登录</a>
+            </p>
+        </div>
+        <div id="tu">
+            <div class="ttu">
+                    <div class="tu1">
+                            <img src="../img/hu.gif" alt="">
+                            <input type="radio"  name="ra"  id="btn1">
+                            <span class="s1">默认皮肤</span>
+                        </div>
+                        <div class="tu1">
+                            <img src="../img/tt.gif" alt="">
+                            <input type="radio"  name="ra" id="btn2">
+                            <span class="s1">喜迎新春</span>
+                        </div>
+                        <div class="tu1">
+                            <img src="../img/t1.gif" alt="">
+                            <input type="radio"  name="ra" id="btn3">
+                            <span class="s1">妇女节快乐</span>
+                        </div>
+                        <div class="tu1">
+                            <img src="../img/t2.gif" alt="">
+                            <input type="radio"  name="ra" id="btn4">
+                            <span class="s1">火狐萌萌哒</span>
+                        </div>
+                        <div class="tu1">
+                            <img src="../img/t3.gif" alt="">
+                            <input type="radio"  name="ra" id="btn5">
+                            <span class="s1">春花秋意</span>
+                        </div>
+                        <div class="tu1">
+                            <img src="../img/t5.gif" alt="">
+                            <input type="radio" name="ra" id="btn6">
+                            <span class="s1">漫游云端</span>
+                        </div>
+            </div>
+           
+            <div class="bt">
+                    <input type="button" value="确定" id="btn7">
+                    <input type="button" value="取消" id="btn8"> 
+            </div>
+           
+        </div>
+      
+    </div>
+    
+</body>
+<script>
+    var btn = document.getElementById('btn');
+    var tu = document.getElementById('tu');
+    var istrue = true;
+    btn.onclick = function () {
+        if (istrue) {
+            tu.style.height = '250px';
+        } else {
+            tu.style.height = '0';
+        }
+        istrue = !istrue;
+    }
+
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    var btn3 = document.getElementById('btn3');
+    var btn4 = document.getElementById('btn4');
+    var btn5 = document.getElementById('btn5');
+    var btn6 = document.getElementById('btn6');
+    var btn7 = document.getElementById('btn7');
+    var btn8 = document.getElementById('btn8');
+    var skin = document.getElementById('skin');
+    var oldskin = skin.href;
+
+     //皮肤1
+     btn1.onclick = function () {
+        skin.href = '../css/01皮肤1.css';
+    }
+    //皮肤2
+    btn2.onclick = function () {
+        skin.href = '../css/02皮肤2.css';
+    }
+    //皮肤3
+    btn3.onclick = function () {
+        skin.href = '../css/03皮肤3.css';
+    }
+    btn4.onclick = function () {
+        skin.href = '../css/04皮肤4.css';
+    }
+    btn5.onclick = function () {
+        skin.href = '../css/05皮肤5.css';
+    }
+    btn6.onclick = function () {
+        skin.href = '../css/06皮肤6.css';
+    }
+    //确定
+    btn7.onclick = function () {
+        console.log('确定应用这个皮肤');
+    }
+    //取消
+    btn8.onclick = function () {
+        skin.href = oldskin;
+    }
+</script>
+
+</html>

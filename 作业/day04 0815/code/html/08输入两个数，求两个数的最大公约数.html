@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>输入两个数，求两个数的最大公约数</title>
+    <input type="text" id="s1">
+    <input type="text" id="s2">
+    <input type="button" id="btn" value="提交"> 
+</head>
+<body>
+    
+</body>
+<script>
+    // 获取节点,判断两个数的大小，从较小的数开始循环，两个数都能整除的第一个数即最大公约数
+    var min="";
+    var sum="";
+    var i="";
+    var s1=document.getElementById("s1");
+    var s2=document.getElementById("s2");
+    var btn=document.getElementById("btn");
+    btn.onclick = function(){
+        var v1=s1.value*1;
+        var v2=s2.value*1;
+        if(v1>v2){  
+            for(i=v2;i>=1;i--){
+                if((v2 % i==0) && (v1 % i==0)){
+                    sum=i;
+                    document.write("最大公约数是：" +sum); break;
+                }
+              
+            }
+        }
+        if(v1<v2){
+            for(i=v1;i>=1;i--){
+                if((v2 % i==0) && (v1 % i==0)){
+                    sum=i;
+                    document.write("最大公约数是："+sum); break;
+                }
+              
+            }
+        }
+    }
+
+
+// 最小公倍数
+    var min="";
+    var sum="";
+    var i="";
+    var s1=document.getElementById("s1");
+    var s2=document.getElementById("s2");
+    var btn=document.getElementById("btn");
+    btn.onclick = function(){
+        var v1=s1.value*1;
+        var v2=s2.value*1;
+        var num="";
+        if(v1>v2){  
+            for(i=v2;i>=1;i--){
+                if((v2 % i==0) && (v1 % i==0)){
+                    sum=i;
+                     num=v1*v2/sum;  
+                    document.write("最小公倍数是：" +num); break;   
+                }
+              
+            }
+        }
+        if(v1<v2){
+            for(i=v1;i>=1;i--){
+                if((v2 % i==0) && (v1 % i==0)){
+                    sum=i;
+                    num=v1*v2/sum;
+                    document.write("最小公倍数是："+num); break;
+                }
+              
+            }
+        }
+    }
+</script>
+</html>

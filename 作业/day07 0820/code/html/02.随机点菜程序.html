@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>随机点菜程序</title>
+</head>
+
+<body>
+    <h1>菜谱</h1>
+    <input type="text" id="cp">
+    <input type="button" id="btn" value="随机点菜">
+    <input type="button" id="btn1" value="粉类">
+    <input type="button" id="btn2" value="饭菜类">
+    <ol id="list"></ol>
+</body>
+<script>
+    // 设置点击按钮 菜谱 当点击按钮按下的时候，随机点菜，并可以通过菜谱按钮显示所有的菜名
+    // 设置点击事件 用数组装菜单，点击菜单的时候显示菜单，点击随机点菜生成随机菜名
+    (function () {
+        var cp = document.getElementById("cp");
+        var btn = document.getElementById("btn");
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var list = document.getElementById('list');
+        // 菜谱
+        var arr1=["螺蛳粉","桂林米粉","兰州拉面","重庆小面"];
+        var arr2=["木桶饭","鸡煲饭","小炒","黄焖鸡米饭"];
+        var isture=true;
+       btn.onclick = function(){
+            var index= 0;
+            var name = '';
+            if(isture){
+                index = parseInt(Math.random() * arr1.length);
+                name = arr1[index];//粉类
+            }else{
+                index=parseInt(Math.random() * arr2.length);//饭菜类
+                name = arr2[index];
+            }
+            cp.value = name;
+            console.log(name);
+        }
+        btn1.onclick = function(){
+            isture = true;
+            show(arr1);
+        }
+        btn2.onclick = function(){
+            isture = false;
+            show(arr2);
+        }
+        // console.log(arr2);
+        function show(arr) {
+            var html = '';//准备用来存放拼接的字符串
+            for (var i = 0; i < arr.length; i++) {
+                html += '<li>' + arr[i] + '</li>';
+            }
+            list.innerHTML = html;//渲染数据到页面
+        }
+    })();
+
+</script>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<link rel="stylesheet" href="../css/fangdajing.css">
+</head>
+
+<body>
+
+	<div class="wrap" id="wrap">
+		<!-- 右边的放大图片 -->
+		<div class="biger">
+			<!-- <img src="" alt=""> -->
+		</div>
+		<!-- 左边 -->
+		<div class="imgs">
+			<div class="main">
+				<!-- <img src="" alt=""> -->
+
+				<!-- 遮罩 -->
+				<!-- <div class="mask" id="mask"></div> -->
+			</div>
+			<!-- 小图 -->
+			<div class="bottom">
+				<p class="prev">&lt;</p>
+				<div class="box">
+					<ul class="smaller">
+						<!-- <li><img src="" alt=""></li> -->
+					</ul>
+				</div>
+				<p class="next">&gt;</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrap" id="wrap2">
+		<div class="biger">
+			<!-- <img src="" alt=""> -->
+		</div>
+		<div class="imgs">
+			<div class="main">
+				<!-- <img src="" alt=""> -->
+				<!-- <div class="mask" id="mask"></div> -->
+			</div>
+			<div class="bottom">
+				<p class="prev">&lt;</p>
+				<div class="box">
+					<ul class="smaller">
+						<!-- <li><img src="" alt=""></li> -->
+					</ul>
+				</div>
+				<p class="next">&gt;</p>
+			</div>
+		</div>
+	</div>
+</body>
+<!-- <script src="js/common.js"></script> -->
+<script src="../js/magniglass.js"></script>
+<script>
+	(function () {
+		magniglass({
+			ele: 'wrap',//最外层盒子的id(必填)
+			imglist:['../img/222.jpg', '../img/lin44.gif', '../img/list1.gif', '../img/list2.gif', '../img/lsy.gif', '../img/tb1.jpg'],//图片数据(必填)
+			scal: 3,//大图放大倍数(选填，默认是2倍)
+			speed: 1//小图运动的图片个数(选填，默认是一次动一张图)
+		});
+
+		magniglass({
+			ele: 'wrap2',//最外层盒子的id(必填)
+			imglist: ['../img/222.jpg', '../img/lin44.gif', '../img/list1.gif', '../img/list2.gif', '../img/lsy.gif', '../img/tb1.jpg','../img/222.jpg', '../img/lin44.gif', '../img/list1.gif', '../img/list2.gif',],//图片数据(必填)
+			scal: 2,//大图放大倍数(选填，默认是2倍)
+			speed: 4//小图运动的图片个数(选填，默认是一次动一张图)
+		});
+	})();
+</script>
+
+</html>

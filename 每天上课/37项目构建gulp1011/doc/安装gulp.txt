@@ -1,0 +1,22 @@
+﻿
+1.安装nodejs：node-v8.12.0-x64.msi
+
+2.检测是否安装成功：
+
+3.地址栏打开命令行:输入 cmd回车
+
+4.检测node是否安装成功：node -v  看到版本号就是安装成功了
+
+5.检测npm是否成功:npm -v 是安装成功了
+
+6、如果npm成功了，把 package.json 放到开发目录下一次性安装所有的依赖包；写指令： npm install
+
+7.写指令：gulp -v  看到两个版本号就是安装成功了
+
+
+
+安装node失败：https://www.cnblogs.com/huiziblog666/p/6274494.html
+
+gulp教程：https://www.cnblogs.com/2050/p/4198792.html
+
+nodejs官网：https://nodejs.org

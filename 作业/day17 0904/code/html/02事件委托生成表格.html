@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格的操作</title>
+    <style>
+        table {
+            margin-top: 50px;
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+
+        }
+
+        td,
+        th {
+            padding: 20px 40px;
+            border: 1px solid #000;
+
+        }
+
+        th {
+            background: red;
+        }
+
+        /* tr:nth-child(2n) {
+            background-color: #58bc58;
+        }
+
+        tr:nth-child(2n+1) {
+            background-color: yellow;
+        } */
+    </style>
+</head>
+
+<body>
+    姓名：<input type="text" id="tex1">
+    性别：<input type="text" id="tex2">
+    年龄：<input type="text" id="tex3">
+    <input type="button" value="生成" id="btn">
+    <div id="output">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="body">
+                <!-- <tr>
+                    <td>1</td>
+                    <td contenteditable="true">小明</td>
+                    <td contenteditable="true">男</td>
+                    <td contenteditable="true">18</td>
+                    <td>
+                        <a class="dele" href="###">删除</a>
+                        <a class='clones' href="###">复制</a>
+                    </td>
+                    </tr> -->
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script>
+    /*
+            1.表格的操作
+            -隔行变色
+            -删除当行
+            -复制当行
+            -添加数据动态插入内容
+            -动态修改单元格内容  contenteditable="true"
+
+    */
+    // 点击按钮的时候，获取表格内容，生成表格，
+
+    (function () {
+
+        //找节点：
+        var tex1 = document.getElementById('tex1');
+        var tex2 = document.getElementById('tex2');
+        var tex3 = document.getElementById('tex3');
+        var btn = document.getElementById('btn');
+        var body = document.getElementById('body');
+    
+        //点击事件来生成表格
+        btn.onclick = function () {
+
+            //去掉前后空格加非空判断
+            var name = tex1.value.trim();
+            var sex = tex2.value.trim();
+            var age = tex3.value.trim();
+
+            if (name && age && sex) {
+                var html = `<tr>
+                       <td class="xuhao"></td>
+                       <td contenteditable="true">${name}</td>
+                       <td contenteditable="true">${sex}</td>
+                       <td contenteditable="true">${age}</td>
+                       <td>
+                          <a class="dels" href="###">删除</a>
+                          <a class="clones" href="###">复制</a>
+                       </td>
+                  </tr>`;
+                body.innerHTML += html;
+
+                //清空并且聚焦
+                tex1.value = tex2.value = tex3.value = '';
+                tex1.focus();
+                // 方法一 单独生成序列号和对tr隔行变色
+                var xuhao = document.getElementsByClassName('xuhao');
+                // function xu() {
+                //     for (var i = 0; i < xuhao.length; i++) {
+                //         xuhao[i].innerHTML = i + 1;
+                //     }
+                // }
+                // xu();
+
+                // 方法二，tr判断奇偶和生成序号都需要循环，所以用一个循环同时生成，减少代码量
+                function xu() {
+                    var tr=document.querySelectorAll('#body tr');
+                    var xuhao = document.getElementsByClassName('xuhao');
+                    for (var i = 0; i < xuhao.length; i++) {
+                        if (i % 2) {
+                            tr[i].style.background = "#58bc58";
+                        } else {
+                            tr[i].style.background = "pink";
+                        }
+                        xuhao[i].innerHTML = i + 1;
+                    }
+                }
+                xu();
+            } else {
+                alert('请输入完整的信息');
+            }
+            // 方法一用委托事件，建议使用
+            var dels = document.getElementsByClassName('dels');
+            var clones = document.getElementsByClassName('clones');
+
+            body.onclick = function (ev) {
+                if (ev.target.className == 'dels') {
+                    var res = ev.target.parentNode.parentNode;
+                    body.removeChild(res);
+                }
+                if (ev.target.className == 'clones') {
+                    var res = ev.target.parentNode.parentNode;
+                    var num = res.cloneNode(true);
+                    body.appendChild(num);
+                }
+                xu();
+            }
+
+
+            // 方法二，原生代码，多次dom操作，会降低性能，不建议使用
+
+            //删除
+            // var tr = body.getElementsByTagName('tr');
+            // var dels = document.getElementsByClassName('dels');
+
+            // function del() {
+            //     for (var i = 0; i < tr.length; i++) {
+            //         dels[i].onclick = function () {
+            //             var res = confirm('你要删除我吗？');
+            //             if (res) {
+            //                 // console.log(this.parentNode.parentNode);
+            //                 body.removeChild(this.parentNode.parentNode);
+            //             }
+            //             //删除后重新排序
+            //             xu();
+            //         }
+            //     }
+            // }
+
+            // del();
+
+            // //复制
+            // var clones = document.getElementsByClassName('clones');
+            // function clon() {
+            //     for (var i = 0; i < tr.length; i++) {
+            //         clones[i].onclick = function () {
+            //             var newtr = (this.parentNode.parentNode).cloneNode(true);
+            //             body.appendChild(newtr);
+
+            //             //复制的那行同样也要可以复制和删除
+            //             clon();
+            //             del();
+            //             //复制后重新排序
+            //             xu();
+            //         }
+
+            //     }
+            // }
+
+            // clon();
+
+        }
+    })();
+</script>
+
+</html>

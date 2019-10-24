@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 700px;
+            height: 400px;
+            margin: auto;
+            border: 1px solid salmon;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>身体质量指数</h1>
+        身高: <input type="text" id="sg"><br>
+        体重: <input type="text" id="tz"><br><br>
+        <input type="button" id="btn" value="测试"><br><br>
+    </div>
+</body>
+<script>
+    var sg = document.getElementById("sg");
+    var tz = document.getElementById("tz");
+    var btn = document.getElementById("btn");
+    var c;
+    btn.onclick = function(){
+        var a = sg.value * 1;
+        var b = tz.value * 1;
+        var c;
+        var c = b / (a * a);
+        var  num = c;
+        if (c < 18.5) {
+            alert("你太瘦了，多吃点");
+        }
+        else if (c >= 18.5 && c <= 24.99) {
+            alert("正常");
+        }
+        else if (c >= 25 && c <= 28) {
+            alert("过重");
+        }
+        else if (c > 28 && c <= 32) {
+            alert("肥胖");
+        }
+        else if(c > 32){
+            alert("该减肥了");
+        }
+    }
+</script>
+
+</html>

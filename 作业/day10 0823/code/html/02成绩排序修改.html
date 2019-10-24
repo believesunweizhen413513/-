@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>成绩排序</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        #datalist {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        table {
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table thead {
+            text-align: left;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>成绩表</h1>
+    <div id="datalist">
+        <table id="list">
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>语文</th>
+                    <th>数学</th>
+                    <th>英语</th>
+                    <th>总成绩</th>
+                    <th>排名</th>
+                </tr>
+            </thead>
+            <tbody id="tb">
+                <!-- <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr> -->
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    /*
+            需求：以下是某班级一次考试的成绩表。请计算每个学生总成绩，并按总成绩排名。统计各单科成绩第一名，输出其成绩与学号。
+                * 求出每个人的总成绩
+                * 求单科成绩和对应的学号
+                * 按照总成绩进行排序,求出排名信息
+                * 数据渲染：生成表格
+        */
+    //未排序的数据
+    var score = [{
+        sno: 1,
+        chinese: 105,
+        math: 62,
+        english: 118
+    }, {
+        sno: 2,
+        chinese: 89,
+        math: 78,
+        english: 120
+    }, {
+        sno: 3,
+        chinese: 86,
+        math: 64,
+        english: 80
+    }, {
+        sno: 4,
+        chinese: 78,
+        math: 99,
+        english: 91
+    }, {
+        sno: 5,
+        chinese: 107.5,
+        math: 97,
+        english: 70
+    }, {
+        sno: 6,
+        chinese: 112,
+        math: 61,
+        english: 92
+    }, {
+        sno: 7,
+        chinese: 102,
+        math: 79,
+        english: 104
+    }, {
+        sno: 8,
+        chinese: 71,
+        math: 72,
+        english: 105
+    }, {
+        sno: 9,
+        chinese: 56,
+        math: 68,
+        english: 61
+    }, {
+        sno: 10,
+        chinese: 98,
+        math: 83,
+        english: 77
+        //total : 用代码计算总成绩
+    }];
+    // 请计算每个学生总成绩，并按总成绩排名。统计各单科成绩第一名，输出其成绩与学号。
+    //总成绩求和
+    //总成绩排序
+    // 先渲染，这样后面求各科成绩的排序对总成绩的排序就不会有形象
+    //  各科成绩排序
+    var total = 0;
+    score.map(function (item) {
+        return item.total = item.chinese + item.math + item.english;
+    });
+    console.log(score);
+    // 总成绩排序
+    score.sort(function (a, b) {
+        return b.total - a.total;//调用，给total排序
+    });
+    // index从0开始，让序号加1
+    score.forEach(function (item, index) {
+        item.Ranking = index + 1;
+    });
+    // 先排序，（让成绩相等或者相近的成绩相临就方便比较）然后用前后两个数作比较，如果两个数相等，那么让他们的下标相等，即排名相等
+    for (var i = 0; i < score.length - 1; i++) {
+        if (score[i].total == score[i + 1].total) {
+            //后面和前面的相等
+            score[i + 1].Ranking = score[i].Ranking;
+        }
+    }
+    // 渲染页面
+    var tb = document.getElementById("tb");
+    function show() {//封装函数，调用map必须要用函数
+        var html = score.map(function (item) {
+            return `<tr>
+                            <td>${item.sno}</td>
+                            <td>${item.chinese}</td>
+                            <td>${item.math}</td>
+                            <td>${item.english}</td>
+                            <td>${item.total}</td>
+                            <td>${item.Ranking}</td>
+                        </tr>`
+        }).join('');//字符串拼接会默认以逗号隔开，
+        // 用join可以改变，join('')-没有任何样式；join(' ')-中间有空格，以空格隔开
+        tb.innerHTML = html;
+    }
+    show();
+    // 语文、数学、英语单科成绩的排序都用到.sort(function (a, b)，所以用函数封装起来，用的时候调用即可
+    function Ranking(type) {
+        score.sort(function (a, b) {
+            return b[type] - a[type];
+        })
+    }
+    Ranking('chinese');
+    console.log("语文成绩第一名学号是：" + score[0].sno + "语文成绩第一名为：" + score[0].chinese);
+    Ranking('math');
+    console.log("数学成绩第一名学号是：" + score[0].sno + "数学成绩第一名为：" + score[0].math);
+    Ranking('english');
+    console.log("英语成绩第一名学号是：" + score[0].sno + "英语成绩第一名为：" + score[0].english);
+</script>
+
+</html>

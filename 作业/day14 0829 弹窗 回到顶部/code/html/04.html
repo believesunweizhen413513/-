@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 700px;
+            height: 400px;
+            position: relative;
+            margin: auto;
+        }
+
+        #box img {
+            width: 700px;
+            height: 400px;
+        }
+
+        ul {
+            list-style: none;
+            position: absolute;
+            right: 40%;
+            bottom: 18px;
+        }
+
+        #box li {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-block;
+            font-size: 12px;
+            background-color: white;
+            margin-right: 5px;
+            line-height: 28px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #box .active {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="" alt="" id="maimg">
+        <ul>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        var arr = ["../code/images/1.jpg", "../code/images/2.jpg", "../code/images/3.jpg", "../code/images/4.jpg",
+            "../code/images/5.jpg"
+        ]
+        var madiv = document.getElementById("box")
+        var maimg = document.getElementById("maimg")
+        var arrli = document.getElementsByTagName("li")
+        console.log(arrli)
+        var num = 0;
+        // 设置定时器
+        var t = setInterval(fun, 3000);
+        fun();
+        function fun() {
+            // 排小按钮的他
+            // 渲染
+            clear();
+            maimg.src = arr[num];
+            arrli[num].className = 'active';
+            num++;
+            if (num > arr.length - 1) {
+                num = 0;
+            }
+
+        }
+        function clear() {
+            for (var i = 0; i < arrli.length; i++) {
+                arrli[i].className = '';
+            }
+        }
+        // 遍历数组
+        for (let i = 0; i < arrli.length; i++) {
+            // 绑定索引
+            arrli[i].index = i;
+            // 给按钮绑定点击时间
+            arrli[i].onclick = function () {
+                clear();
+                maimg.src = arr[i];
+                num=i;
+                arrli[i].className = 'active';
+            }
+
+        }
+
+    }
+</script>
+
+</html>

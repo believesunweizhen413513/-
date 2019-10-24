@@ -1,0 +1,177 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+#box {
+    width: 100%;
+    height: 100%;
+
+    #list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+            float: left;
+            width: 22%;
+            height: 536px;
+            margin-bottom: 20px;
+            margin-right: 25px;
+            border: 1px solid #ededed;
+
+            .d1 {
+                width: 100%;
+                height: 310px;
+                text-align: center;
+                margin-bottom: 8px;
+                position: relative;
+                overflow: hidden;
+
+                img {
+                    border-bottom: 2px #fff solid;
+                    height: 310px;
+                }
+
+                .mark {
+                    display: block;
+                    width: 310px;
+                    height: 38px;
+                    position: absolute;
+                    left: 0px;
+                    bottom: -38px;
+                    margin: 0px;
+                    opacity: .6;
+                    background: orangered;
+                    transition: all .5s;
+                    font-size: 16px;
+                    line-height: 38px;
+
+                }
+            }
+
+            .d1:hover .mark {
+                bottom: 0px;
+
+            }
+            .d2{
+                padding-left:10px;
+                height: 36px;
+            }
+            .d2 img {
+                width: 50px;
+                height: 36px;
+                margin-right: 3px;
+            }
+
+            .active {
+                border: 1px sandybrown solid;
+            }
+
+            .d3 {
+                width: 100%;
+                height: 164px;
+                box-sizing: border-box;
+                padding: 0px 10px;
+
+                .p1 {
+                    font-size: 20px;
+                    line-height: 20px;
+                    padding-bottom: 10px;
+                    padding-top: 10px;
+
+                    .s1 {
+                        float: left;
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: orangered;
+                        vertical-align: bottom;
+                        padding-right: 2px;
+                    }
+
+                    .s2 {
+                        display: inline-block;
+                        text-align: center;
+                        width: 34px;
+                        height: 16px;
+                        line-height: 16px;
+                        font-size: 14px;
+                        color: #fff;
+                        background: orangered;
+                        vertical-align: bottom;
+                    }
+
+                    .s3 {
+                        float: right;
+                        font-size: 14px;
+                        color: #999;
+                        vertical-align: bottom;
+                    }
+
+                }
+
+                .p2 {
+                    padding-bottom: 16px;
+
+                    a {
+                        font-size: 12px;
+                        line-height: 20px;
+                        color: #000;
+                       
+
+                    }
+                }
+
+                .p3 {
+                    width: 100%;
+                    height:40px;
+                    .if1 {
+                        // display: inline-block;
+                        font-size: 18px;
+                        padding-right: 5px;
+                        float: left;
+                        color: orangered;
+                    }
+
+                    a {
+                        font-size: 12px;
+                        text-decoration: underline;
+                        color: #999;
+                        float: left;
+                    }
+
+                    .s4 {
+                        font-size: 14px;
+                        float: right;
+                        color: #999;
+                    }
+                }
+
+                .p4 {
+                    width: 100%;
+                    // height: 40px;
+                    line-height: 40px;
+                    .shopn {
+                        float: left;
+                        font-size: 40px;
+                        color: orange;
+                    }
+
+                    .kefu {
+                        float: right;
+                        font-size: 20px;
+                        color: powderblue;
+                    }
+                }
+            }
+        }
+        li:hover{
+            border: 1px solid orangered;
+        }
+    }
+}

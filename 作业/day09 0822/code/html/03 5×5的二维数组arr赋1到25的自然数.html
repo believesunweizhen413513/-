@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通过循环按顺序为一个5×5的二维数组arr赋1到25的自然数，然后输出该数组的左下半三角的和</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    通过循环按顺序为一个5×5的二维数组arr赋1到25的自然数，然后输出该数组的左下半三角的和
+        1.循环生成5x5的二维数组
+        2.计算左下角的和
+    */
+    // 生成数组,数组里面嵌套数组
+    // arr[]=arr[i]arr[]
+    var num = 1;
+    var total = 0;
+    var arr = [];
+    for (var i = 0; i < 5; i++) {//生成5个空数组
+        arr[i] = [];
+        for (var j = 0; j < 5; j++) {
+            var sum = num++;
+            arr[i][j] = sum;
+            if (i >= j)
+             {total += sum;}
+        };
+        console.log(arr);
+    };
+    // 循环按顺序为一个5×5的二维数组arr赋1到25的自然数
+    console.log(arr);
+    //输出该数组的左下半三角的和
+    console.log(total);
+
+
+
+
+    // var num = 1;
+    // var a = [];
+    // for (var i = 0; i < 5; i++) {
+    //     var temp = [];
+    //     for (var j = 0; j < 5; j++) {
+    //         temp[temp.length] = num;
+    //         num++;
+    //     }
+    //     a[a.length] = temp;
+
+    // }
+    // console.log(a);
+    // for (var i = 0; i < 5; i++) {
+    //     for (var j = 0; j <= i; j++) {
+    //         document.write(a[i][j] + ' ');
+    //     }
+    //     document.write('<br>');
+    // } 
+</script>
+
+</html>

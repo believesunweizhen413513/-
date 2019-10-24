@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/1.css">
+</head>
+
+<body>
+    <div id="qietu">
+        <div class="qietu-img">
+            <div id="big-img">
+                <img id="bigimg" src="../images1/O1CN013rYWcA2CHguiujgfS_!!137228449.jpg" alt="">
+            </div>
+            <ul class="list">
+                <li>
+                    <img class="checked" src="../images1/O1CN013rYWcA2CHguiujgfS_!!137228449.jpg" alt="">
+                </li>
+                <li>
+                    <img src="../images1/O1CN01CUZvR32CHgujowDeu_!!0-item_pic.jpg" alt="">
+                </li>
+                <li>
+                    <img src="../images1/O1CN01MyTF632CHguiujgfI_!!0-item_pic.jpg" alt="">
+                </li>
+                <li>
+                    <img src="../images1/O1CN01xtRehr2CHguXixciJ_!!137228449.jpg" alt="">
+                </li>
+                <li>
+                    <img src="../images1/O1CN016D03It2CHguehp9An_!!137228449.jpg" alt="">
+                </li>
+                <li>
+                    <img src="../images1/O1CN017W3tYi2CHgugnprSI_!!137228449.jpg" alt="">
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    (
+        function () {
+            var smallimg = document.getElementsByTagName('img');
+
+            var bigimg = document.getElementById('bigimg');
+            // console.log(li1[0]);
+            for (var i = 0; i < smallimg.length; i++) {
+                smallimg[i].onclick = function () {
+                    for (var j = 0; j < smallimg.length; j++) {
+                        smallimg[j].className = '';
+                    }
+                    this.className = 'checked';
+                    bigimg.src = this.src;
+                }
+            }
+        }
+    )();
+</script>
+
+</html>

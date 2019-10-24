@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分别计算出以上数组的最大值，最小值和平均值，并输出他们的索引:求5个值</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    (function () {
+        var arr = [60, 200, 30, 60, 333, 555, 678, 98, 243];
+        var max = arr[0];
+        var min = arr[0];
+        var sum = 0;
+        var n = "";
+        var m = "";
+        function shuzu() {
+            for (var i = 0; i < arr.length; i++) {
+                sum += arr[i];
+                if (arr[i] > max) {
+                    max = arr[i];
+                    m = i;
+                }
+                if (arr[i] < min) {
+                    min = arr[i];
+                    n = i;
+                }
+
+            }
+        }
+        shuzu();
+        var mean = (sum / arr.length).toFixed(2) * 1;
+        console.log(max);
+        console.log(min);
+        console.log(sum);
+        console.log(mean);
+        console.log(typeof (mean));
+        console.log(m);
+        console.log(n);
+    })();
+
+
+
+    // var arr = [60, 200, 30, 60, 333, 555, 678, 98, 243];
+    // var max = arr[0];
+    // var min = arr[0];
+    // var m = "";
+    // var n = "";
+    // var sum = 0;
+    // for (var i = 0; i < arr.length; i++) {
+    //     sum += arr[i];
+    //     if (arr[i] > max) {
+    //         max = arr[i];
+    //         m = i;
+    //     }
+    //     if (arr[i] < min) {
+    //         min = arr[i];
+    //         n = i;
+    //     }
+    // }
+    // mean = (sum / arr.length).toFixed(3) * 1;
+    // document.write("最大值 = " + max + "<br>" + "最小值 = " + min + "<br>" + "最大值的下标 = " + m + "<br>" + "最小值的下标 = " + n + "<br>");
+    // document.write("平均值=" + mean);
+</script>
+<!-- 排序 -->
+<!-- for(var i=0;i<arr.length-1;i++){
+    for(var j=0;j<arr.length;j++){
+        if(arr[i]>arr[j]){
+            current=arr[j];
+            arr[j]=arr[i];
+            arr[i]=current;
+        }
+    }
+} -->
+
+</html>

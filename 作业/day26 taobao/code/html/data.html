@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../font_1364609_baeavrjy1jo/iconfont.css">
+    <link rel="stylesheet" href="../font_1363862_yavkjldrnm/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+<script src="../js/comm1.js"></script>
+
+<body>
+    <div id="box">
+        <div id="sear">
+            <input type="search" id="search" placeholder="搜索">
+            <input type="button" value="搜索" id="ser">
+        </div>
+        <div id="paixu">
+            <label for="">价格区间:</label>
+            <input type="text" name="" id="min" placeholder="￥">-
+            <input type="text" name="" id="max" placeholder="￥">
+            <input type="button" id="queding" value="确定">
+            <input type="button" id="btn1" class='gao' value='价格从高到低'>
+            <input type="button" id="btn2" class='di' value='价格从低到高'>
+        </div>
+        <ul id="list">
+            <!-- <li>
+                <div class="bgp">
+                    <img id="bigpic" src="https://gw.alicdn.com/bao/uploaded/i2/671012022/O1CN01xz6C271Qo7OmvuEJp_!!671012022.jpg_180x180xz.jpg_.webp" alt="">
+                    <span class="mark">找同款</span>
+                    <span class="mark2">找相似</span>
+                </div>
+                <div class="xiang">
+                    <p class="p1">
+                        <span class="s1">1350.00</span>
+                        <span class="s2">包邮</span>
+                        <span class="s3">61人付款</span>
+                    </p>
+                    <p class="p2">
+                        <a  href="">Sara意代MAXMARA高圆圆明星同款走秀款女装中装 <span style="color: red;">连衣裙</span>女</a>
+                    </p>
+                    <p class="p3">
+                        <i class="if1 iconfont icon-liebiao"></i>
+                        <a  href="">陪你看ufo</a>
+                        <span class="s4">意大利</span>
+                    </p>
+                    <p class="p4">
+                        <span class="shopn iconfont icon-jinpai"></span>
+                        <span class="kefu iconfont icon-jiaoliuxuanzhong "></span>
+                    </p>
+                </div>
+            </li> -->
+        </ul>
+        <p id="pages">
+            <!-- <a class="active" href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a> -->
+        </p>
+    </div>
+</body>
+<script>
+    /*
+       数据渲染：
+           前端：
+               * 结构html写好，css写好，删除重复的结构保留一个即可
+               * 发送ajax，获取数据，数据渲染
+           后端：
+               * 写接口：查询数据库，把数据做好，发给前端
+           
+           缓存的解决：如果两次请求的是通过url的资源，浏览器本身就会帮你缓存；
+               * 在network里面勾选去除缓存 disable cache
+               * 手动清除：ctrl + f5
+               * 清除浏览数据
+               * 改变url：加时间到参数里面   url?time=时间戳&name=jingjing&tel=231231
+               * 添加meta去除缓存：<meta http-equiv="Pragma" content="no-cache">
+            
+               1.列表页
+
+                    -渲染第一页数据
+                    -生成页码
+                    -点击页面换数据
+                    -排序：仿淘宝列
+                    表  
+                    -查找价格区间的商品
+                    -模糊查询：连衣裙
+                    -点击某个商品跳转，把id通过url带到详情页
+
+                    2.详情页
+
+                    -获取id查询该商品信息渲染到页面
+
+                    查询价格在200到400之间的所有商品：SELECT * FROM goods WHERE price BETWEEN 200 AND 400（列表页）
+   */
+
+
+    (function () {
+        // 获取节点
+        let list = document.getElementById('list');
+        let pages = document.getElementById('pages');
+
+        let btn1 = document.getElementById('btn1');
+        let btn2 = document.getElementById('btn2');
+
+        let min = document.getElementById('min');
+        let max = document.getElementById('max');
+        let que = document.getElementById('queding');
+
+
+        let search = document.getElementById('search');
+        let ser = document.getElementById('ser');
+
+        let ipage = 1;//获取第一页
+        let num = 8;//每页8条数据
+        let paixu = '';
+        let price1 = '';
+        let price2 = '';
+        let name1 = '';
+        // 发送ajax
+        function init() {
+            ajax({
+                type: 'get',
+                url: '../api/data.php',
+                data: {
+                    ipage,
+                    num,
+                    paixu,
+                    price1,
+                    price2,
+                    name1,
+                },
+                success: str => {
+                    creatdata(str);//字符串形式
+                }
+            });
+            function creatdata(str) {
+                // console.log(str);
+
+                let arr = JSON.parse(str);//将字符串转成数组
+                // 拼接数据，渲染
+
+                let html = arr.list.map(item => {
+                    return ` <li>
+                <div class="bgp">
+                    <img id="bigpic" data-id="${item.id}" src="${item.url}
+                    ">
+                    <span class="mark">找同款</span>
+                    <span class="mark2">找相似</span>
+                </div>
+                <div class="xiang">
+                    <p class="p1">
+                        <span class="s1">￥${item.price}</span>
+                        <span class="s2">包邮</span>
+                        <span class="s3">${item.bynum}人付款</span>
+                    </p>
+                    <p class="p2">
+                        <a  href="" id="title" data-id="${item.id}">${item.name} </a>
+                    </p>
+                    <p class="p3">
+                        <i class="if1 iconfont icon-liebiao"></i>
+                        <a  href="">${item.shopname}</a>
+                        <span class="s4">${item.city}</span>
+                    </p>
+                    <p class="p4">
+                        <span class="shopn iconfont icon-jinpai"></span>
+                        <span class="kefu iconfont icon-jiaoliuxuanzhong "></span>
+                    </p>
+                </div>
+            </li>`;
+                }).join('');
+                list.innerHTML = html;
+                // 计算总页码
+                let sum = Math.ceil(arr.total / num);
+                let aStr = '';
+
+                for (let i = 0; i < sum; i++) {
+                    aStr += `<a href="###">${i + 1}</a>`;
+                }
+                pages.innerHTML = aStr;
+                pages.children[ipage - 1].classList.add('active');
+                //3.点击跳转到对应的内容
+                pages.onclick = ev => {
+                    if (ev.target.tagName == 'A') {
+                        ipage = ev.target.innerHTML;
+                        init();
+                    }
+                }
+
+            }
+        }
+        init();
+        //排序
+        btn1.onclick = function () {
+            paixu = 'desc';
+            init();
+        }
+        btn2.onclick = function () {
+            paixu = 'asc';
+            init();
+        }
+        //   查找价格区间的商品
+        que.onclick = () => {
+            price1 = min.value;
+            price2 = max.value;
+            init();
+
+        }
+
+        // 模糊查询加区间
+        ser.onclick = () => {
+            name1 = search.value;
+            price1 = min.value;
+            price2 = max.value;
+            init();
+        }
+
+        // 点击跳转详情页
+        list.onclick = function(ev) {
+            if (ev.target.id == 'bigpic' || ev.target.id == 'title') {
+                window.open('xiangqin.html?' + ev.target.dataset.id);
+            }
+        }
+
+    })();
+</script>
+
+</html>

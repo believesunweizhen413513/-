@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画回到顶部</title>
+    <link rel="stylesheet" href="../css/回到顶部.css">
+</head>
+
+<body>
+    <div class="totop">
+        <img src="../img/22.jpg" alt="">
+ 
+    </div>
+</body>
+<script src="../js/动画回到顶部.js"></script>
+<script>
+    // 获取节点
+    Jump({//配置参数
+        ele: 'totop',//id
+        iw: 200, //宽度 (可选)
+        ih: 200,//高度 (可选)
+        scrollY : 400,
+        speed:500,
+    });
+</script>
+
+</html>
