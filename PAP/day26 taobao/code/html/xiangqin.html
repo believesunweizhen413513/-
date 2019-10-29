@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/xiangqin.css">
+
+</head>
+
+<body>
+    <div id="box">
+        <!-- <div class="top">
+            <div class="img fl">
+                <div id="smallimg">
+                    <img src="https://gw.alicdn.com/bao/uploaded/i2/671012022/O1CN01xz6C271Qo7OmvuEJp_!!671012022.jpg_180x180xz.jpg_.webp"">
+                    <span id="lay"></span>
+                </div>
+                <div id="bigimg">
+                    <img id="img1" src="https://gw.alicdn.com/bao/uploaded/i2/671012022/O1CN01xz6C271Qo7OmvuEJp_!!671012022.jpg_180x180xz.jpg_.webp"">
+                </div>
+                <div class="small">
+                    <img class="active1" src="https://gw.alicdn.com/bao/uploaded/i2/671012022/O1CN01xz6C271Qo7OmvuEJp_!!671012022.jpg_180x180xz.jpg_.webp"">
+                    <img src="https://gw.alicdn.com/bao/uploaded/i2/671012022/O1CN01xz6C271Qo7OmvuEJp_!!671012022.jpg_180x180xz.jpg_.webp"">
+                </div>
+                <p>收藏宝贝(435人气)</p>
+            </div>
+
+            <div class="you fl">
+                <h3>连衣群连衣群连衣群连连衣群连衣群连衣群连衣群
+                    连衣群连衣群连衣群衣群连衣群连衣群连衣群连衣群
+                </h3>
+
+                <div class="p2">
+                    <div class="pt">
+                        <p class="pp1">
+                            <span>价格</span>
+                            <span>¥ <del>299.00</del></span>
+                        </p>
+                        <p class="pp2">
+                            <span>92</span>
+                            <span>累计评论</span>
+                        </p>
+                        <p class="pp3">
+                            <span>59</span>
+                            <span>交易成功</span>
+                        </p>
+
+                    </div>
+                    <div class="pb">
+                        <span>淘宝价</span>
+                        <p>
+                            <span>¥1350.00</span>
+                            <span>卖家促销</span>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="p3">
+                    <span>配送</span>
+                    <span>意大利 至</span>
+                    <select name="" id="">
+                        <option value="">广东广州荔湾区</option>
+                        <option value="">广西</option>
+                        <option value="">四川</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">快递 免运费</option>
+                        <option value="">快递 运费</option>
+                        <option value="">四川</option>
+                    </select>
+                    <span>30天内发货</span>
+                </div>
+                <div class="p4">
+
+                    <span>尺码</span>
+                    <span title="该码为中国码">36</span>
+                    <span title="该码为中国码">38</span>
+                    <span title="该码为中国码">40</span>
+
+                </div>
+                <div class="p5">
+                    <i>颜色分类</i>
+                    <span>花色</span>
+                    <span>白色</span>
+                </div>
+                <div class="p6">
+                    <i>数量</i>
+                    <div>
+                        <input id="cut" type="button" value="-">
+                        <input id="text" type="text" placeholder="1">
+                        <input id="add" type="button" value="+">
+                        <span>件（库存10件）</span>
+                    </div>
+
+                </div>
+                <div class="p7">
+                    <i class="i1">花呗分期</i>
+                    <div>
+                        <span>¥ 460.35x3期</span>
+                        <i>（含手续费）</i>
+                    </div>
+                    <div>
+                        <span>¥ 460.35x3期</span>
+                        <i>（含手续费）</i>
+                    </div>
+                    <div>
+                        <span>¥ 460.35x3期</span>
+                        <i>（含手续费）</i>
+                    </div>
+                </div>
+                <div class="p8">
+                    <span>立即购买</span>
+                    <span>加入购物车</span>
+                </div>
+                <div class="p9">
+                    <i>承诺</i>
+                    <span>不支持7天无理由</span>
+                </div>
+                <div class="p10">
+                    <i>支付</i>
+                    <span>蚂蚁花呗</span>
+                    <span>信用卡支付</span>
+                    <span>集分宝</span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <ul id="ul">
+                <li>宝贝详情</li>
+                <li>
+                    累计评论
+                    <i>92</i>
+                </li>
+                <li>专享服务</li>
+            </ul>
+            <div class="sha" style="display: block">1</div>
+            <div class="sha">2</div>
+            <div class="sha">3</div>
+        </div> -->
+    </div>
+</body>
+<script src="../js/comm1.js"></script>
+<!-- <script src="../js/zuoye.js"></script> -->
+<script>
+    (function () {
+        var gid = decodeURI(location.search).split('?')[1];
+        console.log(gid);
+
+        let box = document.getElementById('box');
+        let imgs = [];
+        function init() {
+            ajax({
+                type: 'get',
+                url: '../api/xiangqin.php',
+                data: {
+                    gid,
+                    imgs,
+                },
+                success: str => {
+                    creatdata(str);//字符串形式
+                    console.log(str);
+
+
+                }
+            });
+            function creatdata(str) {
+                let html = '';
+                let arr = JSON.parse(str);
+                console.log(arr);
+
+                html = arr.map(item => {
+                    let arr1 = item.imgs.split('，');
+                    console.log(arr1);
+                    let res = arr1.map(function (item) {
+                        return `<img src="${item}">`
+
+                    }).join('');
+                  
+                    
+                    console.log(res);
+
+                    return `<div class="top">
+                <div class="img fl">
+                    <div id="smallimg">
+                        <img src="${item.url}">
+                        <span id="lay"></span>
+                    </div>
+                    <div class="small">
+                         ${res}
+                    </div>
+                    <p>收藏宝贝(${item.scour}人气)</p>
+                </div>
+            <div class="you fl">
+                <h3>${item.name} </h3>
+                <div class="p2">
+                    <div class="pt">
+                        <p class="pp1">
+                            <span>价格</span>
+                            <span>¥ <del>${item.price}</del></span>
+                        </p>
+                        <p class="pp2">
+                            <span>${item.pinlun}</span>
+                            <span>累计评论</span>
+                        </p>
+                        <p class="pp3">
+                            <span>${item.success}</span>
+                            <span>交易成功</span>
+                        </p>
+                    </div>
+                    <div class="pb">
+                        <span>淘宝价</span>
+                        <p>
+                            <span>¥${item.trueprice}</span>
+                            <span>卖家促销</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="p3">
+                    <span>配送</span>
+                    <span>意大利 至</span>
+                    <select name="" id="">
+                        <option value="">广东广州荔湾区</option>
+                        <option value="">广西</option>
+                        <option value="">四川</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">快递 免运费</option>
+                        <option value="">快递 运费</option>
+                        <option value="">四川</option>
+                    </select>
+                    <span>30天内发货</span>
+                </div>
+                <div class="p4">
+                    <span>尺码</span>
+                    <span title="该码为中国码">${item.size1}</span>
+                    <span title="该码为中国码">${item.size2}</span>
+                    <span title="该码为中国码">${item.size3}</span>
+                </div>
+                <div class="p5">
+                    <i>颜色分类</i>
+                    <span>花色</span>
+                    <span>白色</span>
+                </div>
+                <div class="p6">
+                    <i>数量</i>
+                    <div>
+                        <input id="cut" type="button" value="-">
+                        <input id="text" type="text" placeholder="1">
+                        <input id="add" type="button" value="+">
+                        <span>件（库存10件）</span>
+                    </div>
+
+                </div>
+                <div class="p7">
+                    <i class="i1">花呗分期</i>
+                    <div>
+                        <span>¥ 460.35x3期</span>
+                        <i>（含手续费）</i>
+                    </div>
+                    <div>
+                        <span>¥ 460.35x3期</span>
+                        <i>（含手续费）</i>
+                    </div>
+                    <div>
+                        <span>¥ 460.35x3期</span>
+                        <i>（含手续费）</i>
+                    </div>
+                </div>
+                <div class="p8">
+                    <span>立即购买</span>
+                    <span>加入购物车</span>
+                </div>
+                <div class="p9">
+                    <i>承诺</i>
+                    <span>不支持7天无理由</span>
+                </div>
+                <div class="p10">
+                    <i>支付</i>
+                    <span>蚂蚁花呗</span>
+                    <span>信用卡支付</span>
+                    <span>集分宝</span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <ul id="ul">
+                <li>宝贝详情</li>
+                <li>
+                    累计评论
+                    <i>${item.leiji}</i>
+                </li>
+                <li>专享服务</li>
+            </ul>
+            <div class="sha" style="display: block">1</div>
+            <div class="sha">2</div>
+            <div class="sha">3</div>
+        </div>`
+                }).join('')
+                //         console.log(arr);
+
+                //         html += `<div class="top">
+                //         <div class="img fl">
+                //             <div id="smallimg">
+                //                 <img src="${arr[0].url}">
+                //                 <span id="lay"></span>
+                //             </div>
+                //             <div id="bigimg">
+                //                 <img id="img1" src="${arr[0].url}>
+                //             </div>
+                //             <div class="small">
+                //                 <img class="active1" src="https://gw.alicdn.com/bao/uploaded/i2/671012022/O1CN01xz6C271Qo7OmvuEJp_!!671012022.jpg_180x180xz.jpg_.webp"">
+                //                 <img src="https://gw.alicdn.com/bao/uploaded/i2/671012022/O1CN01xz6C271Qo7OmvuEJp_!!671012022.jpg_180x180xz.jpg_.webp"">
+                //             </div>
+                //             <p>收藏宝贝(${arr[0].scour}人气)</p>
+                //         </div>
+                //     <div class="you fl">
+                //         <h3>${arr[0].name} </h3>
+                //         <div class="p2">
+                //             <div class="pt">
+                //                 <p class="pp1">
+                //                     <span>价格</span>
+                //                     <span>¥ <del>${arr[0].price}</del></span>
+                //                 </p>
+                //                 <p class="pp2">
+                //                     <span>${arr[0].pinlun}</span>
+                //                     <span>累计评论</span>
+                //                 </p>
+                //                 <p class="pp3">
+                //                     <span>${arr[0].success}</span>
+                //                     <span>交易成功</span>
+                //                 </p>
+                //             </div>
+                //             <div class="pb">
+                //                 <span>淘宝价</span>
+                //                 <p>
+                //                     <span>¥${arr[0].trueprice}</span>
+                //                     <span>卖家促销</span>
+                //                 </p>
+                //             </div>
+                //         </div>
+                //         <div class="p3">
+                //             <span>配送</span>
+                //             <span>意大利 至</span>
+                //             <select name="" id="">
+                //                 <option value="">广东广州荔湾区</option>
+                //                 <option value="">广西</option>
+                //                 <option value="">四川</option>
+                //             </select>
+                //             <select name="" id="">
+                //                 <option value="">快递 免运费</option>
+                //                 <option value="">快递 运费</option>
+                //                 <option value="">四川</option>
+                //             </select>
+                //             <span>30天内发货</span>
+                //         </div>
+                //         <div class="p4">
+                //             <span>尺码</span>
+                //             <span title="该码为中国码">${arr[0].size1}</span>
+                //             <span title="该码为中国码">${arr[0].size2}</span>
+                //             <span title="该码为中国码">${arr[0].size3}</span>
+                //         </div>
+                //         <div class="p5">
+                //             <i>颜色分类</i>
+                //             <span>花色</span>
+                //             <span>白色</span>
+                //         </div>
+                //         <div class="p6">
+                //             <i>数量</i>
+                //             <div>
+                //                 <input id="cut" type="button" value="-">
+                //                 <input id="text" type="text" placeholder="1">
+                //                 <input id="add" type="button" value="+">
+                //                 <span>件（库存10件）</span>
+                //             </div>
+
+                //         </div>
+                //         <div class="p7">
+                //             <i class="i1">花呗分期</i>
+                //             <div>
+                //                 <span>¥ 460.35x3期</span>
+                //                 <i>（含手续费）</i>
+                //             </div>
+                //             <div>
+                //                 <span>¥ 460.35x3期</span>
+                //                 <i>（含手续费）</i>
+                //             </div>
+                //             <div>
+                //                 <span>¥ 460.35x3期</span>
+                //                 <i>（含手续费）</i>
+                //             </div>
+                //         </div>
+                //         <div class="p8">
+                //             <span>立即购买</span>
+                //             <span>加入购物车</span>
+                //         </div>
+                //         <div class="p9">
+                //             <i>承诺</i>
+                //             <span>不支持7天无理由</span>
+                //         </div>
+                //         <div class="p10">
+                //             <i>支付</i>
+                //             <span>蚂蚁花呗</span>
+                //             <span>信用卡支付</span>
+                //             <span>集分宝</span>
+                //         </div>
+                //     </div>
+                // </div>
+                // <div class="bottom">
+                //     <ul id="ul">
+                //         <li>宝贝详情</li>
+                //         <li>
+                //             累计评论
+                //             <i>${arr[0].leiji}</i>
+                //         </li>
+                //         <li>专享服务</li>
+                //     </ul>
+                //     <div class="sha" style="display: block">1</div>
+                //     <div class="sha">2</div>
+                //     <div class="sha">3</div>
+                // </div>`
+                box.innerHTML = html;
+            }
+        }
+        init();
+    })();
+</script>
+
+</html>

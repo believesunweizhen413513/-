@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+            width: 22%;
+        }
+
+        #pages a {
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            margin: 5px;
+            background: #58bc58;
+        }
+
+        .active {
+            background: 'red';
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>足迹-列表页</title>
+</head>
+
+<body>
+    <ul id="list">
+        <!-- <li>
+            <img src="http://img10.yiguoimg.com/d/items/2018/180807/9288727883523335_300.jpg" alt="">
+            <p><a>原膳澳洲和牛西冷牛排</a></p>
+           <p>￥49.90</p>
+        </li> -->
+    </ul>
+    <p id="pages">
+        <!-- <a class="active" href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a> -->
+    </p>
+</body>
+<script src="../js/comm1.js"></script>
+<script>
+    (function () {
+
+        /*
+            需求：足迹
+                * 未登录
+                    * 数据保存在本地：localstorage
+                        * 数据渲染
+                        * 点击某个商品的时候，跳转到详情页，把id带到详情页
+                        * 把浏览记录存到本地
+                * 登陆:存到数据库里面
+                    * 点击列表页数据：
+                        * 查
+                            * 找到：删了，最新存到末尾
+                            * 找不到：存进去
+        */
+        let list = document.getElementById('list');
+        let pages = document.getElementById('pages');
+
+        let ipage = 1;//获取第一页
+        let num = 8;//每页8条数据
+        let price = 0;
+        function init() {
+            ajax({
+                type: 'get',
+                url: '../api/goodslist.php',
+                data: {
+                    ipage,
+                    num,
+                    price,
+                },
+                success: str => {
+                    creatdata(str);//字符串形式
+                }
+            });
+        }
+        function creatdata(str) {
+            // console.log(str);
+            let arr = JSON.parse(str);//将字符串转成数组
+            // 拼接数据，渲染
+            // console.log(arr);
+            let html = arr.list.map(item => {
+                return `<li data-id="${item.id}">
+                        <img src="${item.url}" alt="">
+                        <p><a href="###">${item.title}</a></p>
+                        <p>￥${item.price}</p>
+                    </li>`
+            }).join('');
+            list.innerHTML = html;
+            let sum = Math.ceil(arr.total / num);
+            // console.log(sum);
+            let aStr = '';
+            for (let i = 0; i < sum; i++) {
+                aStr += `<a href="###">${i + 1}</a>`;
+            }
+            pages.innerHTML = aStr;
+            pages.children[ipage - 1].classList.add('active');
+
+        }
+
+        init();
+        // //点击可以跳转
+        list.onclick = ev => {
+            if (ev.target.tagName == 'A') {
+                let id = ev.target.parentNode.parentNode.dataset.id;
+                // console.log(ev.target.parentNode.parentNode.dataset.id); 
+                // console.log(id);
+                zuji(id);
+                window.open('06xiangqin.html?' + id);
+            }
+        }
+
+        // 点击切换页码
+        pages.onclick = ev => {
+            if (ev.target.tagName == 'A') {
+                ipage = ev.target.innerHTML;
+                init();
+            }
+        }
+
+
+        function zuji(id) {
+            let goodlist = localStorage.goodlist;
+            if (goodlist) {
+                //证明有足迹
+                // console.log(goodlist);
+                let arr = goodlist.split('&');
+                console.log(arr);
+                let index = arr.indexOf(id);//-1没有，直接把id拼接在后面；非-1,有，去掉旧的id，再把新的id放到末尾
+                console.log(index);
+                
+                console.log(arr);
+                // console.log(index);
+                let str = '';
+                if (index >= 0) {//我的错，小心
+                    //有,splice(下标，删除个数，插入个数（可选）)
+                    arr.splice(index, 1);
+                    arr.push(id);
+                    str = arr.join('&');
+                } else {
+                    //没有
+                    str = goodlist + '&' + id;
+                }
+                // let str = goodlist + '&' + id;
+                localStorage.goodlist = str;
+            } else {
+                //没有足迹
+                localStorage.goodlist = id;
+            }
+        }
+    })();
+</script>
+
+</html>

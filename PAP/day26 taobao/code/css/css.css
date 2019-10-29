@@ -1,0 +1,210 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+#box {
+  width: 100%;
+  height: 100%;
+}
+
+#box #list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#box #list li {
+  float: left;
+  width: 22%;
+  height: 536px;
+  margin-bottom: 20px;
+  margin-right: 25px;
+  border: 1px solid #ededed;
+}
+
+#box #list li .bgp {
+  width: 100%;
+  height: 310px;
+  text-align: center;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+#box #list li .bgp img {
+  border-bottom: 2px #fff solid;
+  height: 310px;
+}
+
+#box #list li .bgp .mark {
+  display: block;
+  width:49%;
+  height: 38px;
+  position: absolute;
+  left: 0px;
+  bottom: -38px;
+  margin: 0px;
+  opacity: .6;
+  background: orangered;
+  transition: all .5s;
+  font-size: 16px;
+  line-height: 38px;
+
+}
+#box #list li .bgp .mark2 {
+    display: block;
+    width: 50%;
+    height: 38px;
+    position: absolute;
+    right: 0px;
+    bottom: -38px;
+    margin: 0px;
+    opacity: .6;
+    background: orangered;
+    transition: all .5s;
+    font-size: 16px;
+    line-height: 38px;
+   
+  }
+
+#box #list li .bgp:hover .mark {
+  bottom: 0px;
+}
+
+#box #list li .bgp:hover .mark2 {
+    bottom: 0px;
+  }
+  
+
+
+#box #list li .active {
+  border: 1px sandybrown solid;
+}
+
+#box #list li .xiang {
+  width: 100%;
+  height: 164px;
+  box-sizing: border-box;
+  padding: 0px 10px;
+}
+
+#box #list li .xiang .p1 {
+  font-size: 20px;
+  line-height: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+#box #list li .xiang .p1 .s1 {
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
+  color: orangered;
+  vertical-align: bottom;
+  padding-right: 2px;
+}
+
+#box #list li .xiang .p1 .s2 {
+  display: inline-block;
+  text-align: center;
+  width: 34px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 14px;
+  color: #fff;
+  background: orangered;
+  vertical-align: bottom;
+}
+
+#box #list li .xiang .p1 .s3 {
+  float: right;
+  font-size: 14px;
+  color: #999;
+  vertical-align: bottom;
+}
+
+#box #list li .xiang .p2 {
+  padding-bottom: 16px;
+}
+
+#box #list li .xiang .p2 a {
+  font-size: 12px;
+  line-height: 20px;
+  color: #000;
+}
+#box #list li .xiang .p2 a:hover{
+  color: red;
+  text-decoration-line: underline;
+}
+
+#box #list li .xiang .p3 {
+  width: 100%;
+  height: 40px;
+}
+
+#box #list li .xiang .p3 .if1 {
+  font-size: 18px;
+  padding-right: 5px;
+  float: left;
+  color: orangered;
+}
+
+#box #list li .xiang .p3 a {
+  font-size: 12px;
+  text-decoration: underline;
+  color: #999;
+  float: left;
+}
+
+#box #list li .xiang .p3 .s4 {
+  font-size: 14px;
+  float: right;
+  color: #999;
+}
+
+#box #list li .xiang .p4 {
+  width: 100%;
+  line-height: 40px;
+}
+
+#box #list li .xiang .p4 .shopn {
+  float: left;
+  font-size: 40px;
+  color: orange;
+}
+
+#box #list li .xiang .p4 .kefu {
+  float: right;
+  font-size: 20px;
+  color: powderblue;
+}
+
+#box #list li:hover {
+  border: 1px solid orangered;
+}
+#pages{
+  text-align: center;
+}
+#pages a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  background: #C2C2C2;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  float: left;
+  margin-right: 10px;
+}
+
+#pages .active {
+  background: lightcoral;
+}

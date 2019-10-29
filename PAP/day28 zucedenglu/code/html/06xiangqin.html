@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>足迹-详情页</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #zhuji {
+            width: 400px;
+        }
+
+        #zhuji img {
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+
+        #zhuji li {
+            display: inline-block;
+            position: relative;
+        }
+
+        #zhuji a {
+
+            height: 100px;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>详情页</h1>
+    <div id="good">
+        <!-- <img src="http://img10.yiguoimg.com/d/items/2018/180807/9288727883523335_300.jpg" alt="">
+        <p>原膳澳洲和牛西冷牛排</p> -->
+    </div>
+    <img src="../" alt="">
+    <h2>足迹</h2>
+    <ul id="zhuji">
+        <!-- <li>
+             <img src="../" alt="">
+            <a href="###">原膳澳洲和牛西冷牛排</a>
+        </li> -->
+
+    </ul>
+</body>
+<script src="../js/comm1.js"></script>
+<script>
+    (function () {
+        var gid = decodeURI(location.search).slice(1);
+        // console.log(gid);
+        let good = document.getElementById('good');
+        let id = location.search.slice(1);
+        // let zhuji = document.getElementById('zhuji');
+        // console.log(id);
+        function init() {
+            ajax({
+                type: 'get',
+                url: '../api/06xiangqin.php',
+                data: {
+                    gid,
+                },
+                success: str => {
+                    creatdata(str);//字符串形式
+                    // console.log(str);
+                }
+            });
+
+            function creatdata(str) {
+                // 拼接数据，渲染
+
+                let html = '';
+                let arr = JSON.parse(str);//将字符串转成数组
+                // console.log(str);
+                // console.log(arr);
+                
+                html += ` <img src="${arr[0].url}" alt="">
+                <p>${arr[0].title}</p>`
+                good.innerHTML = html;
+
+
+                function ini() {
+                    let goodlist = localStorage.goodlist;//字符串 3&2&1
+                    let zhuji = document.getElementById('zhuji');
+                    // console.log(goodlist);
+
+                    let data = goodlist.split('&').reverse();//[3,2,1]
+                    console.log(data);
+                    // sre = '';
+                    for (let item of data) {
+                        //item:足迹存起来的id
+                        console.log(item); 
+                        for (let obj of arr) {
+                            //遍历数据，obj对象
+                            console.log(obj);
+                            if (item == obj.id) {
+                                let str='';
+                                sre= `<li> <img data-id="${obj.id}" src="${obj.url}" alt="">
+                                <a  href="###">${obj.title}</a></li>`;
+                            } 
+                        }
+                        zhuji.innerHTML =zhuji.innerHTML+sre;
+                    }
+                   
+                }
+                ini();
+
+            }
+        }
+        init();
+
+
+
+       
+
+       
+
+    })();
+
+
+</script>
+
+</html>
