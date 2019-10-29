@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/tanbao.css">
+</head>
+<script src="../js/common.js"></script>
+
+<body>
+    <div id="box">
+        <h1>首页</h1>
+        <div id="welcome">欢迎你访问我们的网站。<a href="###" class="quit">退出</a></div>
+        <div class="search_box">
+            <input type="text" placeholder="在此搜索商品" id="search"><input type="button" value="搜索" id="btn">
+        </div>
+        <div class="jiage">
+            <label for="">价格区间：</label><input type="text" placeholder="¥" id="price1">--<input type="text"
+                placeholder="¥" id="price2"><input type="button" value="确定" id="btn2">
+            <input type="button" value="价格从高到低" id="gao"><input type="button" value="价格从低到高" id="di">
+        </div>
+        <ul id="shop">
+            <li class="item">
+                <div class="top">
+                    <div class="main">
+                        <img class="bigPic"
+                            src="https://img.alicdn.com/bao/uploaded/i2/TB1HNZvMVXXXXc9XXXXXXXXXXXX_!!0-item_pic.jpg"
+                            alt="">
+                        <div class="mark">
+                            <a href="###">找相似</a>
+                            <a href="###">找同款</a>
+                        </div>
+                    </div>
+
+                    <div class="smallImg">
+                        <img class="active"
+                            src="https://img.alicdn.com/bao/uploaded/i2/TB1HNZvMVXXXXc9XXXXXXXXXXXX_!!0-item_pic.jpg"
+                            alt="">
+                    </div>
+                </div>
+                <div class="bottom">
+                    <p class="p1">
+                        <span>¥ 179.00</span>
+                        <span>包邮</span>
+                        <span>1436人付款</span>
+                    </p>
+                    <p class="p2">贾cui cui自制日系减龄童趣少女感十足香蕉水果印花A字娃娃连衣裙</p>
+                    <p class="p3">
+                        <i class="iconfont icon-liebiao"></i>
+                        <a href="#">鞋第衣名</a>
+                        <span>浙江 杭州</span>
+                    </p>
+                    <div class="dibu"><i class="iconfont icon-jinpai"></i>
+                        <i class="iconfont icon-jiaoliuxuanzhong"></i>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <p id="pages"><a href="###"></a></p>
+    </div>
+</body>
+<script>
+    (() => {
+       let welcome = document.getElementById('welcome');
+        function update() {
+            let user = getCookie('username');
+            if (user) {
+                welcome.innerHTML = `${user},欢迎你访问我们的网站。<a href="###" class="quit">退出</a>`
+            } else {
+                welcome.innerHTML = `欢迎你访问我们的网站。<a href="###" class="quit">登录</a>`
+            }
+        };
+        update();
+        welcome.onclick = function (ev) {
+            ev = ev || window.event;
+            // 退出
+            if (ev.target.innerHTML == '退出') {
+                alert('退出成功');
+                removeCookie('username');
+                removeCookie('url');
+            } else if (ev.target.innerHTML == '登录') {
+                location.href = '登录页.html';
+            }
+            update();//重新渲染
+        };
+        let box = document.getElementById('box');
+        let shoplists = document.getElementById('shop');
+        let pages = document.getElementById('pages');
+        let search = document.getElementById('search');
+        let price1 = document.getElementById('price1');
+        let price2 = document.getElementById('price2');
+        let di = document.getElementById('di');
+        let gao = document.getElementById('gao');
+        let btn2 = document.getElementById('btn2');
+        let btn = document.getElementById('btn');
+        let jiage = document.getElementsByClassName('jiage')[0];
+
+        let ipage = 1;//获取第一页
+        let num = 4;//每页4条数据
+        let paixu = '';
+        let price11 = '';
+        let price22 = '';
+        let ser = '';
+        let sheet = '';
+        function init() {
+            ajax({
+                type: 'get',
+                url: '../api/liebiaoye.php',
+                data: {
+                    sheet: 'goodslist2',//数据库表格名
+                    ipage,//页数
+                    num,//每页几条数据
+                    paixu,//排序方式
+                    price11,//价格起始区间
+                    price22,//价格结束区间
+                    ser,//模糊查询值
+                },
+                success: str => {
+                    create(str);
+                }
+            });
+            // 渲染第一页数据
+            function create(str) {
+                let arr = JSON.parse(str);
+                console.log(arr);
+                let html = arr.list.map(function (item) {
+
+                    return ` <li class="item" >
+                                    <div class="top">
+                                        <div class="main">
+                                            <img class="bigPic" data-id="${item.uid}" src="${item.url}" alt="">
+                                            <div class="mark">
+                                                <a href="###">找相似</a>
+                                                <a href="###">找同款</a>
+                                            </div>
+                                        </div>
+                                        <div class="smallImg">
+                                            <img class="active" src="${item.url}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="p1">
+                                            <span>¥ ${item.price}</span>
+                                            <span>包邮</span>
+                                            <span>${item.paypeople}人付款</span>
+                                        </p>
+                                        <p class="p2" data-id="${item.uid}">${item.title}</p>
+                                        <p class="p3">
+                                            <i class="iconfont icon-liebiao"></i>
+                                            <a href="#">${item.shopname}</a>
+                                            <span>浙江 杭州</span>
+                                        </p>
+                                        <div class="dibu"><i class="iconfont icon-jinpai"></i>
+                                            <i class="iconfont icon-jiaoliuxuanzhong"></i>
+                                        </div>
+                                    </div>
+                                </li>`
+                }).join('');
+                shoplists.innerHTML = html;
+                let sum = Math.ceil(arr.total / num);
+                let astr = '';
+                for (let i = 0; i < sum; i++) {
+                    astr += `<a href="###">${i + 1}</a>`
+                }
+                pages.innerHTML = astr;
+                pages.children[ipage - 1].classList.add('active');
+            }
+        };
+        init();
+        pages.onclick = function (ev) {
+            ev = ev || window.event;
+            if (ev.target.tagName = 'A') {
+                ipage = ev.target.innerHTML;
+                init();
+            }
+        }
+        jiage.onclick = function (ev) {
+            ipage = 1;
+            if (ev.target.id == 'gao') {
+                paixu = 'desc';
+            }
+            if (ev.target.id == 'di') {
+                paixu = 'asc';
+            }
+            if (ev.target.id == 'btn2') {
+                let val1 = price1.value.trim();
+                let val2 = price2.value.trim();
+                if (val1 && val2) {
+                    price11 = val1;
+                    price22 = val2;
+                };
+            }
+            init();
+        }
+        btn.onclick = function () {
+            let val3 = search.value.trim();
+            if (val3) {
+                ser = val3;
+            }
+            init();
+        }
+        shop.onclick = function (ev) {
+            if (ev.target.className == 'bigPic' || ev.target.className == 'p2') {
+                let ids = ev.target.dataset.id;
+                window.open('详情页.html?' + ids);
+            }
+        }
+    })()
+
+</script>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="login" action="" method="post">
+        用户名：<input type="text" placeholder="写邮箱" id="mail" /><span id="inf1"></span><br />
+        密码：<input type="text" placeholder="写密码" id="psw" /><span id="inf2"></span><br />
+        <span id="inf3"></span><br>
+        <input type="button" value="注册" id="btn" />
+        <!-- <input type="button" value="登陆" id="login" /> -->
+    </form>
+</body>
+<script src="../js/common.js"></script>
+<script>
+    (() => {
+
+        /*
+            需求：
+                * 验证用户名是否存在：select
+                * 不存在就可以注册：insert
+                * 注册成功可以登陆(存cookie) : select
+                * 登陆成功跳转页面，可以退出(查cookie是否含有该用户)
+                    * 如果是在注册页、首页跳转到登陆页；本来就在登陆页：登陆成功就跳转到首页 : window.open(url) location.href=url
+                    * 如果是非登陆页登陆的，跳转回上一页(localstorage存上一页路径)
+                * 退出：点击退出就删除cookie
+        */
+
+        // 注册前先验证用户是否存在，存在就不给注册
+        let mail = document.getElementById('mail');
+        let psw = document.getElementById('psw');
+        let inf1 = document.getElementById('inf1');
+        let inf2 = document.getElementById('inf2');
+        let inf3 = document.getElementById('inf3');
+        let btn = document.getElementById('btn');
+        let istrue1 = false;
+        let istrue2 = false;
+        let istrue3 = false;
+        //1.验证用户名是否存在：select
+        mail.onblur = () => {
+            let name = mail.value.trim();
+            //用户名正则，4到16位（字母，数字，下划线，减号）
+            var reg = /^[a-zA-Z0-9_-]{4,16}$/; //注意这里不能用let声明变量
+            // 非空验证
+            if (name) {
+                let isok = reg.test(name);//返回布尔值
+                if (isok) {
+                    inf1.innerHTML = '√';
+                    inf1.style.color = '#58bc58';
+                    istrue1 = true;
+                    aj();
+                } else {
+                    inf1.innerHTML = '用户名必须是4到16位（字母，数字，下划线，减号的组合';
+                    inf1.style.color = 'red';
+                }
+            } else {
+                inf1.innerHTML = '请输入用户名';
+                inf1.style.color = 'red';
+            }
+        }
+        // 验证请求
+        function aj() {
+            ajax({
+                type: 'get',
+                url: '../api/checkname.php',
+                data: {
+                    'username': mail.value.trim(),
+                    'type': 'checkname',//功能类型
+                },
+                success: str => {
+                    if (str == 'yes') {
+                        inf3.innerHTML = '用户名太受欢迎，请换一个';
+                        inf3.style.color = 'red';
+                        istrue3 = false;
+                    } else {
+                        inf3.innerHTML = '恭喜你，该用户名可以注册';
+                        inf3.style.color = '#58bc58';
+                        istrue3 = true;
+                    }
+                }
+            })
+        }
+        psw.onblur = () => {
+            let possword = psw.value.trim();
+            //密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
+            var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
+            // 非空验证
+            if (possword) {
+                let isok = pPattern.test(possword);//返回布尔值
+                if (isok) {
+                    inf2.innerHTML = '√';
+                    inf2.style.color = '#58bc58';
+                    istrue2 = true;
+                } else {
+                    inf2.innerHTML = '密码必须是最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符';
+                    inf2.style.color = 'red';
+                }
+            } else {
+                inf2.innerHTML = '请输入密码';
+                inf2.style.color = 'red';
+            }
+        }
+        //验证通过，准备注册
+        btn.onclick = () => {
+            if (istrue1 && istrue2 && istrue3) {
+                ajax({
+                    type: 'post',
+                    url: '../api/checkname.php',
+                    data: {
+                        'username': mail.value.trim(),
+                        'possword': psw.value.trim(),
+                        'type': 'reg',
+                    },
+                    success: str => {
+                        console.log(str)
+                        if (str == 'yes') {
+                            inf3.innerHTML = '恭喜你，注册成功';
+                            inf3.style.color = '#58bc58';
+                            // 注册成功，跳转到登录页面
+                            location.href = '登录页.html?name=' + mail.value.trim();
+                        } else {
+                            inf3.innerHTML = '很遗憾，注册失败';
+                            inf3.style.color = 'red';
+                        }
+                    }
+                })
+            } else {
+                alert('请输入用户名和密码');
+            }
+        }
+
+
+    })();
+
+
+</script>
+
+</html>

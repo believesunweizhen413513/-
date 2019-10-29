@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>登录页面</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        用户名：<input type="text" placeholder="写邮箱" id="mail" /><span id="inf1"></span><br />
+        密码：<input type="text" placeholder="写密码" id="psw" /><span id="inf2"></span><br />
+        <span id="inf3"></span><br>
+        <input type="checkbox" name="" id="keep">七天免登陆<br />
+        <input type="button" value="登陆" id="login" />
+    </form>
+</body>
+<script src="../js/common.js"></script>
+<script>
+    (() => {
+        /*
+        需求：1、先验证是否登录，
+                a、验证为登录时再次点击登录时，提示已经登录
+                b、没有登录就发送请求验证登录账号密码是否正确（发送数据跟数据库进行匹配），正确就登录成功
+                c、点击七天免登录，cookie值保留七天，不然默认保留一天
+             2、登录成功跳转到首页，并把用户名带过去   
+        */
+        let mail = document.getElementById('mail');
+        let psw = document.getElementById('psw');
+        let keep = document.getElementById('keep');
+        let login = document.getElementById('login');
+        let inf3 = document.getElementById('inf3');
+        login.onclick = function () {
+            let name = mail.value.trim();
+            let possword = psw.value.trim();
+            let user = getCookie('username');
+            if (user) {
+                inf3.innerHTML = '您已经登录过了';
+                inf3.style.color = 'red';
+            } else {
+                if (name && possword) {
+                    ajax({
+                        type: 'post',
+                        url: '../api/checkname.php',
+                        data: {
+                            'username': name,
+                            'possword': possword,
+                            'type': 'login',
+                        },
+                        success: str => {
+                            if (str == 'yes') {
+                                inf3.innerHTML = '恭喜你，登录成功';
+                                inf3.style.color = '#58bc58';
+                                console.log(keep.checked)
+                                if (keep.checked) {
+                                    setCookie('username', name, 7);
+                                } else {
+                                    setCookie('username', name, 1);
+                                }
+                                let url = getCookie('url');
+                                if (url) {
+                                    location.href = url;
+                                } else {
+                                    location.href = location.href = '列表页.html';
+                                }
+                            } else {
+                                inf3.innerHTML = '登录失败，请检查用户名或密码是否正确';
+                                inf3.style.color = 'red';
+                            }
+                        }
+                    })
+                }
+            }
+        }
+
+    })();
+
+</script>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    ul,
+    li {
+        list-style: none;
+    }
+
+    #good {
+        width: 400px;
+
+    }
+
+    #good img {
+        width: 300px;
+    }
+
+    #zhuji {
+        width: 100px;
+    }
+
+    #zhuji img {
+        width: 80px;
+        height: 80px;
+
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>足迹-详情页</title>
+</head>
+<script src="../js/common.js"></script>
+
+<body>
+    <h1>详情页</h1>
+    <div id="good">
+        <!-- <img src="http://img10.yiguoimg.com/d/items/2018/180807/9288727883523335_300.jpg" alt="">
+        <p>原膳澳洲和牛西冷牛排</p> -->
+    </div>
+    <h2>足迹</h2>
+    <ul id="zhuji">
+        <!-- <li><a href="###">原膳澳洲和牛西冷牛排</a></li> -->
+
+    </ul>
+</body>
+<script>
+    (function () {
+
+
+        let good = document.getElementById('good');
+        let id = location.search.slice(1);
+        let html = '';
+        function show(id) {
+            ajax({
+                type: 'get',
+                url: '../api/zuji.php',
+                data: {
+                    'uid': id,
+                },
+                success: str => {
+                    let arr = JSON.parse(str);
+                    let html = arr.map(function (item) {
+                        return `<li data-id ="${item.uid}">
+                                    <img src="${item.imgsurl}" alt="">
+                                     <p><a href="###">${item.title}</a></p>
+                                </li>`
+                    }).join('');
+                    good.innerHTML = html;
+                }
+            });
+        }
+        show(id);
+        let zhuji = document.getElementById('zhuji');
+        //渲染足迹
+        function init() {
+            let goods = localStorage.goods;//字符串 3&2&1
+            let data1 = goods.split('&').reverse();//[3,2,1]
+            let str = '';
+            for (item of data1) {
+                    ajax({
+                        type: 'get',
+                        url: '../api/zuji.php',
+                        data: {
+                            'uid': item,
+                        },
+                        success: str => {
+                            let arr = JSON.parse(str);
+                            let str2 = arr.map(function (item) {
+                                return `<li data-id ="${item.uid}">
+                                    <img src="${item.imgsurl}" alt="">
+                                     <a href="###">${item.uid}${item.title}</a>
+                                </li>`
+                            }).join('');
+                            zhuji.innerHTML = zhuji.innerHTML + str2;
+                        }
+                    })
+                
+
+            }
+        }
+        init();
+
+
+
+        //点击足迹：替换详情页的内容
+        zhuji.onclick = ev => {
+            if (ev.target.tagName == 'A' || ev.target.tagName == 'IMG') {
+                let id = ev.target.parentNode.dataset.id;
+                show(id);
+                zuji(id);
+
+            }
+        }
+
+        function zuji(id) {
+            let goods = localStorage.goods;
+            if (goods) {
+                //证明有足迹
+                let arr = goods.split('&');
+
+                let index = arr.indexOf(id);//-1没有，直接把id拼接在后面；非-1,有，去掉旧的id，再把新的id放到末尾
+                let str = '';
+                if (index >= 0) {
+                    //有
+                    arr.splice(index, 1);
+                    arr.push(id);
+                    str = arr.join('&');
+                } else {
+                    //没有
+                    str = goods + '&' + id;
+                }
+                localStorage.goods = str;
+            } else {
+                //没有足迹
+                localStorage.goods = id;
+            }
+            zhuji.innerHTML = '';
+            init();
+        }
+    })();
+
+
+</script>
+
+</html>

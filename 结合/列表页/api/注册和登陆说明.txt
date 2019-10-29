@@ -1,0 +1,72 @@
+注册和登陆页面：
+
+1.验证用户名是否存在
+
+2.注册
+
+3.登陆
+
+(手机验证码,智能机器人)
+
+api:使用手册
+	/*
+	验证用户名
+		请求方式：  type:  get
+		接口路径：  url:    ../api/checkname.php
+		参数：
+			 data: {
+                    		username:        要验证的用户名
+                   		type: checkname  功能类型
+                },
+			
+		返回数据：
+			{
+			yes:表示该用户名不存在，可以注册
+			no：表示该用户名已存在，不可以注册				
+			}
+	*/
+
+
+
+
+
+
+/*
+	用户注册
+		请求方式：  type:  get/post
+		接口路径：  url:    ../api/checkname.php
+		参数：
+			 data: {
+                    		username:  要注册的用户名
+				password:  注册的密码
+                   		type: reg  功能类型
+                },
+			
+		返回数据：
+			{
+			yes:表示注册成功
+			no：表示注册失败				
+			}
+	*/
+
+/*
+	用户登陆
+	请求方式：  type:  post
+		接口路径：  url:    ../api/checkname.php
+		参数：
+			 data: {
+                    		username:  要登陆的用户名
+				password:  登陆的密码
+                   		type: login 功能类型
+                },
+			
+		返回数据：
+			{
+			yes:表示登陆成功
+			no：表示登陆失败				
+			}
+	*/
+	
+
+
+	

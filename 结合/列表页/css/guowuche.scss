@@ -1,0 +1,203 @@
+#goodscar {
+    width: 100%;
+
+    .content {
+        width: 990px;
+        margin: auto;
+        border: 1px solid #ccc;
+
+        .car-headers-menu {
+            height: 60px;
+            width: 100%;
+
+            .row {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                background: yellowgreen;
+            }
+
+        }
+
+        .goods-content {
+            width: 100%;
+            min-height: 300px;
+            border: 1px solid #ccc;
+
+            .goods-item {
+                width: 100%;
+
+                .car-menu {
+                    height: 30px;
+                    width: 100%;
+                    line-height: 30px;
+                    padding-left: 15px;
+                }
+
+                .panel-body {
+                    width: 100%;
+                    height: 130px;
+                    display: flex;
+                    border: 1px solid #ccc;
+                    box-sizing: border-box;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    .col-md-1 {
+
+                        width: 30px;
+                        display: flex;
+                        justify-content: center;
+                        cursor: pointer;
+                    }
+
+                    .goods-image-column {
+                        display: flex;
+                        width: 250px;
+                        cursor: pointer;
+
+                        img {
+                            margin-right: 10px;
+                            width: 100px;
+                            height: 100px;
+                        }
+
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .col-md-3 {
+                        width: 190px;
+                        display: flex;
+                        justify-content: center;
+                        color: #9c9c9c;
+                    }
+
+                    .goods-price {
+                        width: 105px;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .goods-counts {
+                        width: 120px;
+                        display: flex;
+                        justify-content: center;
+
+                        .form-control {
+                            width: 40px;
+                            height: 30px;
+                            text-align: center;
+                            border: 1px solid #ccc;
+                            box-sizing: border-box;
+                        }
+
+                        .cut,
+                        .add {
+                            width: 30px;
+                            height: 30px;
+                            font-size: 20px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .goods-money-count {
+                        width: 120px;
+                        display: flex;
+                        justify-content: center;
+                        color: #ff4400;
+                    }
+
+                    .goods-operate {
+                        width: 130px;
+                        display: flex;
+                        justify-content: center;
+
+                        button {
+                            width: 40px;
+                            height: 30px;
+                            line-height: 30px;
+                            text-align: center;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+
+        .panel {
+            width: 100%;
+            height: 50px;
+            margin-top: 20px;
+            background: #ccc;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .bottom-menu1 {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+
+                input {
+                    cursor: pointer;
+                }
+
+                span {
+                    cursor: pointer;
+
+                }
+
+            }
+
+            .bottom-menu2 {
+                flex: 4;
+                display: flex;
+                justify-content: flex-start;
+                cursor: pointer;
+
+                &:hover {
+                    color: #ff4400;
+                }
+            }
+
+            .bottom-menu3 {
+                flex: 2;
+                display: flex;
+                justify-content: flex-start;
+
+                #selectGoodsCount {
+                    color: #ff4400;
+                }
+            }
+
+            .bottom-menu4 {
+                flex: 2;
+                display: flex;
+                justify-content: flex-start;
+
+                #selectGoodsMoney {
+                    color: #ff4400;
+                }
+            }
+
+            .submitData {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                cursor: no-drop;
+                background: #b0b0b0;
+                height: 100%;
+                align-items: center;
+            }
+
+            .active {
+                background: orange;
+                cursor: pointer;
+            }
+        }
+    }
+}

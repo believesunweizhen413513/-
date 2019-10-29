@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>足迹-列表页</title>
+    <style>
+        ul,
+        li {
+            list-style: none;
+
+        }
+
+        #list {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        li {
+            width: 200px;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+<script src="../js/common.js"></script>
+
+<body>
+    <ul id="list">
+        <!-- <li>
+            <img src="http://img10.yiguoimg.com/d/items/2018/180807/9288727883523335_300.jpg" alt="">
+            <p>原膳澳洲和牛西冷牛排</p>
+        </li> -->
+    </ul>
+</body>
+<script>
+    (function () {
+
+        /*
+            需求：足迹
+                * 未登录
+                    * 数据保存在本地：localstorage
+                        * 数据渲染
+                        * 点击某个商品的时候，跳转到详情页，把id带到详情页
+                        * 把浏览记录存到本地
+                * 登陆:存到数据库里面
+                    * 点击列表页数据：
+                        * 查
+                            * 找到：删了，最新存到末尾
+                            * 找不到：存进去
+        */
+        let list = document.getElementById('list');
+        //数据渲染
+        //点击可以跳转
+        //证明有足迹
+        // 没有，直接把id拼接在后面；非 - 1, 有，去掉旧的id，再把新的id放到末尾
+        function init() {
+            ajax({
+                type: 'get',
+                url: '../api/zuji.php',
+                success: str => {
+                    let arr = JSON.parse(str);
+
+                    let html = arr.map(function (item) {
+                        return `<li data-id ="${item.uid}">
+                                    <img src="${item.imgsurl}" alt="">
+                                     <p><a href="###">${item.title}</a></p>
+                                </li>`
+                    }).join('');
+                    list.innerHTML = html;
+                }
+            })
+        }
+        init();
+        list.onclick = function (ev) {
+            if (ev.target.tagName == 'A') {
+                let ids = ev.target.parentNode.parentNode.dataset.id;
+                zuji(ids);
+                window.open('足迹详情页.html?' + ids);
+            }
+            if (ev.target.tagName == 'IMG') {
+                let ids = ev.target.parentNode.dataset.id;
+                zuji(ids);
+                window.open('足迹详情页.html?' + ids);
+            }
+        }
+
+        function zuji(ids) {
+            let goods = localStorage.goods;
+            if (goods) {
+                //有足迹，先切割成数组
+                let arr = goods.split('&');
+                let index = arr.indexOf(ids);
+                // 如果有重复的，去掉之前的留下最新的,先去除，再添加，再转为字符串，再次存进去
+                if (index >= 0) {
+                    arr.splice(index, 1);
+                    arr.push(ids);
+                    let str = arr.join('&');
+                    localStorage.goods = str;
+                } else {
+                    localStorage.goods = goods + '&' + ids;
+                }
+            } else {
+                //没有时直接添加
+                localStorage.goods = ids;
+            }
+        }
+    })();
+</script>
+
+</html>

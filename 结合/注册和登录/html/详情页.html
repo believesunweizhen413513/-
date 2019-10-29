@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>详情页</title>
+</head>
+<script src="../js/common.js"></script>
+
+<body>
+    <h1>详情页</h1>
+    <div id="welcome">欢迎你访问我们的网站。<a href="###" class="quit">退出</a></div>
+</body>
+<script>
+    (() => {
+        /*
+        1、验证是否登录，
+            a、是就显示登录用户名和退出功能；
+            b、不是就显示登录，点击登录跳转到登录页面
+        2、退出要清除cookie值    
+        */
+        //详情页，如果在详情页点击登录，应该登录完自动跳转回详情页，增加用户体验
+        //详情页：退出功能
+        let welcome = document.getElementById('welcome');
+        function update() {
+            let user = getCookie('username');
+            if (user) {
+                welcome.innerHTML = `${user},欢迎你访问我们的网站。<a href="###" class="quit">退出</a>`
+            } else {
+                welcome.innerHTML = `欢迎你访问我们的网站。<a href="###" class="quit">登录</a>`
+            }
+        };
+        update();
+        welcome.onclick = function (ev) {
+            ev = ev || window.event;
+            // 退出
+            if (ev.target.innerHTML == '退出') {
+                alert('退出成功');
+                removeCookie('username');
+                removeCookie('url');
+            } else if (ev.target.innerHTML == '登录') {
+                location.href = '登录页.html';
+                setCookie('url', location.href, 7);//记录路径，点击登录再跳转回来
+            }
+            update();//重新渲染
+        }
+
+    })()
+</script>
+
+</html>
